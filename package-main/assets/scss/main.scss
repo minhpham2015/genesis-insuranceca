@@ -1,0 +1,30 @@
+/*
+* Global
+*/
+@import 'vars';
+@import 'fonts';
+@import 'default';
+@import 'common';
+
+body{
+	font-family: $main-font;
+	font-size: 16px;
+	font-weight: normal;
+	.container,.wrap{
+		max-width: $max-width;
+		margin: 0 auto;
+		padding: 0 16px;
+	}
+	a{
+		color: $main-color;
+	}
+}
+
+
+/*
+* Import
+*/
+@import 'header';
+@import 'mega-menu';
+@import 'footer';
+@import 'home';
