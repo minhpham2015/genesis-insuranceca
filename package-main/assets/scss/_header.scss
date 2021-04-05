@@ -1,5 +1,19 @@
 .site-header{
+  padding: 60px;
+  position: initial;
+  .wrap{
+    display: flex;
+    justify-content: space-between;
+    max-width: 1282px;
+    padding: 0;
+    align-items: center;
+  }
+  .title-area{
+    width: 20%;
+  }
   .nav-primary{
+    width: 100%;
+    text-align: center;
     .genesis-nav-menu{
       .menu-item{
         a{
@@ -7,11 +21,60 @@
           font-weight: bold;
           font-stretch: normal;
           font-style: normal;
-          line-height: 2.86;
           letter-spacing: -0.21px;
-          color: #0a334d;
+          color: $main-color-2;
+          padding-left: 10px;
+          padding-right: 10px;
+          span{
+            display: inline-block;
+          }
+        }
+        &.menu-item-has-children{
+          >a{
+            display: flex;
+            align-items: center;
+            &::after{
+              content: "\f347";
+              font-family: dashicons;
+              display: inline-block;
+              line-height: 1;
+              font-weight: 400;
+              font-style: normal;
+              speak: never;
+              text-decoration: inherit;
+              text-transform: none;
+              text-rendering: auto;
+              -webkit-font-smoothing: antialiased;
+              transition: all .2s ease-in;
+              margin-left: 10px;
+              font-size: 24px;
+            }
+          }
+          &:hover{
+            >a::after{
+              transform: rotate(180deg);
+              transform-origin: center;
+            }
+          }
+        }
+        &.current-menu-item{
+          >a{
+            span{
+              box-shadow: 0 1px 0 $main-color-2;
+              line-height: 30px;
+            }
+          }
         }
       }
     }
+  }
+  .header-search{
+    width: 20px;
+    height: 20px;
+    color: $main-color-2;
+    font-size: 20px;
+    font-weight: 100;
+    line-height: 1;
+    cursor: pointer;
   }
 }

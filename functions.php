@@ -147,7 +147,7 @@ genesis_unregister_layout( 'sidebar-sidebar-content' );
 
 // Repositions primary navigation menu.
 remove_action( 'genesis_after_header', 'genesis_do_nav' );
-add_action( 'genesis_header', 'genesis_do_nav', 12 );
+//add_action( 'genesis_header', 'genesis_do_nav', 12 );
 
 // Repositions the secondary navigation menu.
 remove_action( 'genesis_after_header', 'genesis_do_subnav' );

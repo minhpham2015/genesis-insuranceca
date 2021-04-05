@@ -2,12 +2,8 @@
 //Header
 {
   //Remove default
-  //remove_action( 'genesis_site_title', 'genesis_seo_site_title' );
   remove_action( 'genesis_site_description', 'genesis_seo_site_description' );
   remove_action( 'genesis_before_header', 'genesis_skip_links', 5 );
-
-  //Hook
-  //add_action( 'genesis_before_header' , 'template_header_top' );
 }
 
 //Footer
@@ -24,3 +20,7 @@ add_filter ( 'genesis_edit_post_link' , '__return_false' );
 
 // Support SVG
 add_action('upload_mimes', 'package_main_types_to_uploads');
+
+//Menu main
+add_action( 'genesis_header', 'genesis_do_nav' , 12 );
+add_action( 'genesis_header', 'header_top_right_widget', 12 );

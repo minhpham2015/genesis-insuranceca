@@ -31,3 +31,13 @@ function package_main_types_to_uploads($file_types){
 
     return $file_types;
 }
+
+
+//Search default
+function header_top_right_widget() {
+   ?>
+   <div class="header-search">
+     <img src="<?php echo PJ_URI ?>assets/images/Search-Icon.svg" alt="">
+   </div>
+   <?php
+}

@@ -6,7 +6,6 @@
   add_action( 'wp_enqueue_scripts', 'package_main_scripts' );
   if( ! function_exists( 'package_main_scripts' ) ) {
       function package_main_scripts() {
-
         // css
         wp_enqueue_style( 'main-css', PJ_URI . 'assets/css/main.css', false, PJ_VERSION );
 
