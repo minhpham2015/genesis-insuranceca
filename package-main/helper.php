@@ -37,7 +37,7 @@ function package_main_types_to_uploads($file_types){
 function header_top_right_widget() {
    ?>
    <div class="header-search">
-     <img src="<?php echo PJ_URI ?>assets/images/Search-Icon.svg" alt="">
+     <img src="<?php echo PJ_URI ?>assets/images/SearchIcon.svg" alt="">
    </div>
    <?php
 }
