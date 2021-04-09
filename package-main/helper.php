@@ -73,7 +73,6 @@ function insuranceca_search_default_template(){
         </form>
         <?php echo ins_load_template_filter(); ?>
       </div>
-
   </div>
   <?php
 }
