@@ -106,18 +106,23 @@
   .wrap{
     max-width: 1282px;
     padding: 0;
+    display: flex;
+    justify-content: flex-end;
     a{
       width: 17px;
       height: 17px;
       background: #fff;
       display: inline-flex;
       text-decoration: none;
-      align-items: flex-end;
+      align-items: center;
       justify-content: center;
       color: $main-color;
       margin-right: 20px;
-      .fa-facebook{
-        line-height: 0.9;
+      .fa{
+        line-height: 0 !important;
+        &:before{
+          font-size: 13px;
+        }
       }
       &:last-child{
         margin-right: 0;
