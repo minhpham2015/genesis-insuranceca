@@ -42,6 +42,32 @@ function header_top_right_widget() {
    <?php
 }
 
+function share_page_button(){
+    $active = get_field('show_or_hidden_button_share_page_ins');
+    if ($active) { ?>
+        <div id="insuranceca-share-page" class="bt-share-page">
+            <div class="content-share-page">
+                <?php echo do_shortcode('[share-action-button]') ?>
+                <div class="check-copye">
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+}
+
+add_filter('essb4_templates', 'essb_mytemplate_initialze');
+
+function essb_mytemplate_initialze($templates) {
+	$templates['1001'] = '<div class="btnow"> </div>';
+    ?>
+    <div class="btnow">
+
+    </div>
+    <?php
+	return $templates;
+}
+
 //Social
 function ins_socials_template(){
   $socials = get_field('header_socials','options');
