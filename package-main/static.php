@@ -6,8 +6,16 @@
   add_action( 'wp_enqueue_scripts', 'package_main_scripts' );
   if( ! function_exists( 'package_main_scripts' ) ) {
       function package_main_scripts() {
+
+        // Fontawesome
+        wp_enqueue_style( 'font-awesome', PJ_URI . 'assets/font-awesome/css/font-awesome.min.css', false, '4.7.0' );
+
         // css
         wp_enqueue_style( 'main-css', PJ_URI . 'assets/css/main.css', false, PJ_VERSION );
+
+        //popup
+        wp_enqueue_style( 'magnific-popup', PJ_URI . 'assets/popup/magnific-popup.css', false, PJ_VERSION );
+        wp_enqueue_script( 'magnific-popup', PJ_URI . 'assets/popup/jquery.magnific-popup.min.js', ['jquery'], PJ_VERSION, true );
 
         wp_enqueue_script( 'global-js', PJ_URI . 'assets/js/global.js', ['jquery'], PJ_VERSION, true );
         wp_localize_script( 'global-js', 'PJ_Global', apply_filters( 'pj/wp_localize_script/PJ_Global', [
