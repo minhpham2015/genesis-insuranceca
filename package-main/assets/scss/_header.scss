@@ -1,5 +1,5 @@
 .site-header{
-  padding: 9px 60px 50px 60px;
+  padding: 9px 60px 0 60px;
   position: initial;
   background: $main-color;
   box-shadow: none;
@@ -7,7 +7,6 @@
     display: flex;
     justify-content: space-between;
     max-width: 1282px;
-    align-items: center;
   }
   .title-area{
     width: 20%;
@@ -90,6 +89,8 @@
     font-weight: 100;
     line-height: 1;
     cursor: pointer;
+    position: relative;
+    top: 30px;
     .fa{
       color: #fff;
       &:before{
