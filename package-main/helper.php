@@ -42,6 +42,7 @@ function header_top_right_widget() {
    <?php
 }
 
+// popups share social
 function share_page_button(){
     $active = get_field('show_or_hidden_button_share_page_ins');
     $ctaShare = get_field('cta_popus_share_page', 'option');
@@ -50,7 +51,6 @@ function share_page_button(){
     if ($active) { ?>
         <div id="insuranceca-share-page" class="bt-share-page">
             <div class="cta-share">
-                share
                 <?php if ($ctaShare['name'] or $ctaShare['icon']): ?>
                         <?php if ($ctaShare['name']): ?>
                             <span> <?php echo $ctaShare['name'] ?> </span>
@@ -58,6 +58,8 @@ function share_page_button(){
                         <?php if ($ctaShare['icon']): ?>
                             <img src="<?php echo $ctaShare['icon'] ?>" alt="icon-share">
                         <?php endif; ?>
+                <?php else: ?>
+                    <span>Share</span>
                 <?php endif; ?>
             </div>
             <div class="content-share-page" style="display: none">
@@ -90,16 +92,6 @@ function share_page_button(){
     }
 }
 
-add_filter('essb4_templates', 'essb_mytemplate_initialze');
-function essb_mytemplate_initialze($templates) {
-	$templates['1001'] = '<div class="btnow"> </div>';
-    ?>
-    <div class="btnow">
-
-    </div>
-    <?php
-	return $templates;
-}
 
 //Social
 function ins_socials_template(){

@@ -41,7 +41,17 @@
         right: 0;
         top: 40%;
         z-index: 99999;
+        overflow: hidden;
         cursor: pointer;
+        > img{
+            max-width: 20px;
+            height: auto;
+        }
+        span{
+            font-size: 12px;
+            font-weight: 500;
+            font-family: $main-font;
+        }
     }
     .content-share-page{
         position: fixed;
