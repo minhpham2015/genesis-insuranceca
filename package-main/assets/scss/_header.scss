@@ -94,7 +94,7 @@
         &:after{
            content: "";
            position: absolute;
-           left: 30px;
+           left: 40px;
             top: -12px;
             border-top: none;
             border-right: 12px solid transparent;
@@ -106,7 +106,7 @@
         ul.wp-megamenu-sub-menu{
           &:after{
              left: inherit;
-             right: 30px;
+             right: 40px;
           }
         }
       }
