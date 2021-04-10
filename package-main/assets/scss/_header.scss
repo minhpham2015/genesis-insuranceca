@@ -83,6 +83,7 @@
     >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_dropdown_menu ul.wp-megamenu-sub-menu{
       margin-top: 12px;
       &:before{
+        content: "";
         position: absolute;
         top: -12px;
         left: 0;
@@ -90,7 +91,7 @@
         height: 12px;
       }
       &:after{
-         content: " ";
+         content: "";
          position: absolute;
          left: 30px;
           top: -12px;
