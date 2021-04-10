@@ -4,6 +4,7 @@
   //Remove default
   remove_action( 'genesis_site_description', 'genesis_seo_site_description' );
   remove_action( 'genesis_before_header', 'genesis_skip_links', 5 );
+  add_action( 'genesis_before_header', 'ins_socials_template', 5 );
 }
 
 //Footer
@@ -13,6 +14,7 @@
   // remove_action('genesis_footer', 'genesis_footer_markup_open', 5);
   // remove_action('genesis_footer', 'genesis_footer_markup_close', 15);
   // add_filter('genesis_sidebar_title_output','__return_false');
+  add_action('genesis_footer', 'insuranceca_search_default_template',99);
 }
 
 //* Remove the edit link
