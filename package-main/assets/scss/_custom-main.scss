@@ -1,6 +1,6 @@
 .elementor-widget{
     &.elementor-widget-breadcrumbs{
-        font-size: 17px;
+        font-size: 15px;
         line-height: 40px;
         letter-spacing: -0.25px;
         font-weight: 700;
@@ -9,6 +9,24 @@
         .elementor-widget-container{
             a{
                 color: #9b9b9b;
+                position: relative;
+                display: inline-block;
+                padding-right: 15px;
+                padding-right: 20px;
+                margin-right: 8px;
+                &:before{
+                    content: ">";
+                    display: inline-block;
+                    font-size: inherit;
+                    line-height: inherit;
+                    font-weight: inherit;
+                    font-family: inherit;
+                    color: inherit;
+                    position: absolute;
+                    top: 50%;
+                    right: 0;
+                    transform: translateY(-50%);
+                }
             }
         }
     }
@@ -41,7 +59,17 @@
         right: 0;
         top: 40%;
         z-index: 99999;
+        overflow: hidden;
         cursor: pointer;
+        > img{
+            max-width: 20px;
+            height: auto;
+        }
+        span{
+            font-size: 12px;
+            font-weight: 500;
+            font-family: $main-font;
+        }
     }
     .content-share-page{
         position: fixed;
@@ -119,6 +147,7 @@
                         font-family: $main-font;
                         letter-spacing: -0.44px;
                         color: #4a4a4a;
+                        padding: 0;
                     }
                     .meta-popups{
                         cursor: pointer;
