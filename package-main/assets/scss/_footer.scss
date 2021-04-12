@@ -18,8 +18,9 @@
   }
 }
 
-.footer-widgets{
+.footer-widgets {
   padding: 48px 0;
+  border: none;
   .widget-area{
     display: flex;
     align-items: flex-start;
@@ -38,6 +39,7 @@
     }
     &.footer-widgets-1{
       width: 60%;
+      padding-left: 0;
       .menu-footer-menu-container{
         width: 100%;
         .menu{
@@ -72,6 +74,91 @@
       &:not(:last-child){
         margin-right: 10px;
       }
+    }
+  }
+}
+
+.footer-top{
+  background-color: rgb(204 199 186 / 20%);
+  padding: 85px 0;
+  .wrap{
+    display: flex;
+    align-items: flex-start;
+  }
+  &--left{
+    max-width: 200px;
+    margin-right: 100px;
+    > img{
+      width: 60px;
+      margin-bottom: 23px;
+    }
+    .footer-description{
+      font-size: 15px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.33;
+      letter-spacing: normal;
+      color: #2f2f39;
+    }
+  }
+  &--right{
+    width: calc(100% - 300px);
+  }
+  .item-info{
+    h3{
+      font-size: 22px;
+      font-weight: bold;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.18;
+      letter-spacing: -0.65px;
+      color: #2f2f39;
+      margin-bottom: 10px;
+    }
+    .des-footer{
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      .__des{
+        max-width: 257px;
+        font-size: 13px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.54;
+        letter-spacing: normal;
+        color: #2f2f39;
+      }
+      .__btn{
+        a{
+          font-size: 17px;
+          font-weight: bold;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: 1.71;
+          letter-spacing: -0.5px;
+          color: #2f2f39;
+          display: flex;
+          align-items: flex-end;
+          position: relative;
+          padding-right: 18px;
+          .fa{
+            position: absolute;
+            right: 0;
+            &:before{
+              font-size: 30px;
+            }
+          }    
+        }
+      }
+    }
+    &.subscribe-footer{
+      padding-bottom: 40px;
+      border-bottom: solid 1px #2f2f39;
+    }
+    &.visit-footer{
+      padding-top: 40px;
     }
   }
 }
