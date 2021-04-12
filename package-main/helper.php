@@ -136,6 +136,7 @@ function insuranceca_search_default_template(){
   <?php
 }
 
+//Template filter
 function ins_load_template_filter(){
   ?>
   <div class="template-filter-form">
@@ -161,4 +162,58 @@ function ins_load_template_filter(){
       </div>
   </div>
   <?php
+}
+
+//Top footer
+function insuranceca_footer_top_template($output){
+  ob_start();
+  $enable_footer_top = get_field('enable_footer_top','options');
+  if($enable_footer_top):
+    $logo_footer        = get_field('logo_footer','options');
+    $description_footer = get_field('description_footer','options');
+    $subscribe_footer   = get_field('subscribe_footer','options');
+    $visit_footer   = get_field('visit_footer','options');
+    ?>
+    <div class="footer-top">
+      <div class="wrap">
+          <div class="footer-top--left">
+            <?php if($logo_footer): ?>
+              <img src="<?php echo $logo_footer; ?>" alt="">
+            <?php endif; ?>
+            <?php if($description_footer): ?>
+              <div class="footer-description">
+                  <?php echo $description_footer; ?>
+              </div>
+            <?php endif; ?>
+          </div>
+          <div class="footer-top--right">
+              <div class="item-info subscribe-footer">
+                 <h3><?php echo $subscribe_footer['heading']; ?></h3>
+                 <div class="des-footer">
+                    <div class="__des">
+                      <?php echo $subscribe_footer['description']; ?>
+                    </div>
+                    <div class="__btn">
+                      <a href="<?php echo $subscribe_footer['button']['link']; ?>"><?php echo $subscribe_footer['button']['label']; ?><i class="fa fa-angle-right" ></i></a>
+                    </div>
+                 </div>
+              </div>
+              <div class="item-info visit-footer">
+                 <h3><?php echo $visit_footer['heading']; ?></h3>
+                 <div class="des-footer">
+                    <div class="__des">
+                      <?php echo $visit_footer['description']; ?>
+                    </div>
+                    <div class="__btn">
+                      <a href="<?php echo $visit_footer['button']['link']; ?>"><?php echo $visit_footer['button']['label']; ?><i class="fa fa-angle-right" ></i></a>
+                    </div>
+                 </div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <?php
+  endif;
+  $footer_top = ob_get_clean();
+  return $footer_top.$output;
 }
