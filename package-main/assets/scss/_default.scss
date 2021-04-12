@@ -570,6 +570,10 @@ th {
 	clear: both;
 	margin: 0 auto;
 	padding: 60px 30px 0;
+	@media only screen and (max-width: 767px){
+		padding-left: 5px;
+		padding-right: 5px;
+	}
 }
 
 
