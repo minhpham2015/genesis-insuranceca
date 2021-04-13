@@ -14,6 +14,7 @@
                 padding-right: 15px;
                 padding-right: 20px;
                 margin-right: 8px;
+                text-decoration: underline;
                 &:focus{
                     outline-offset: 0;
                     outline: none;
@@ -31,6 +32,23 @@
                     top: 50%;
                     right: 0;
                     transform: translateY(-50%);
+                }
+            }
+        }
+    }
+    &.elementor-widget-form{
+        .elementor-form{
+            input, textarea, button{
+                &:focus{
+                    box-shadow: none;
+                    outline: none;
+                }
+            }
+            .elementor-field-group{
+                .elementor-field-label{
+                    &:after{
+                        color: inherit;
+                    }
                 }
             }
         }
