@@ -2,7 +2,7 @@
   padding: 0;
   border: none;
   .wrap{
-    max-width: 1282px;
+    max-width: 1044px;
     p{
       padding: 18px 0 56px;
       border-top: 1px solid #2f2f39;
@@ -86,7 +86,7 @@
     align-items: flex-start;
   }
   &--left{
-    max-width: 200px;
+    max-width: 220px;
     margin-right: 100px;
     > img{
       width: 60px;
@@ -103,7 +103,7 @@
     }
   }
   &--right{
-    width: calc(100% - 300px);
+    width: calc(100% - 320px);
   }
   .item-info{
     h3{
@@ -149,7 +149,7 @@
             &:before{
               font-size: 30px;
             }
-          }    
+          }
         }
       }
     }
