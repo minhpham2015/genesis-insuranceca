@@ -209,3 +209,29 @@ function insuranceca_footer_top_template($output){
   $footer_top = ob_get_clean();
   return $footer_top.$output;
 }
+
+
+// alert banner top page
+function alert_banner_top(){
+    $active_banner = get_field('show_or_hiden_alert_banner_top');
+    $heading_banner = get_field('heading_alert_banner_insuranceca', 'option');
+    $content_banner = get_field('content_alert_banner_insuranceca', 'option');
+    if ($active_banner) { ?>
+        <div id="bt-alert-banner-top" class="alert-banner-top">
+                <div class="conatiner-alert-banner-top">
+                    <div class="meta-banner">
+                        <?php if ($heading_banner): ?>
+                            <h2 class="heading-banner"> <?php echo $heading_banner ?> </h2>
+                        <?php endif; ?>
+                        <?php if ($content_banner): ?>
+                            <div class="content-banner"> <?php echo $content_banner ?>  </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="cta-close">
+                    <img src="<?php echo PJ_URI;?>/assets/images/icon-cancel-white.svg" alt="copy">
+                </div>
+        </div>
+    <?php
+    }
+}
