@@ -82,7 +82,7 @@
       }
     }
     >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_dropdown_menu,>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu{
-      ul.wp-megamenu-sub-menu{
+      >ul.wp-megamenu-sub-menu{
         margin-top: 12px;
         &:before{
           content: "";
@@ -104,7 +104,7 @@
         }
       }
       &:last-child{
-        ul.wp-megamenu-sub-menu{
+        >ul.wp-megamenu-sub-menu{
           &:after{
              left: inherit;
              right: 40px;
@@ -113,13 +113,13 @@
       }
     }
     >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu{
-      ul.wp-megamenu-sub-menu{
+      >ul.wp-megamenu-sub-menu{
         &:after{
            left: inherit;
         }
       }
       &:last-child{
-        ul.wp-megamenu-sub-menu{
+        >ul.wp-megamenu-sub-menu{
           &:after{
              left: inherit;
              right: inherit;
