@@ -59,8 +59,13 @@ genesis_markup(
 		'context' => 'site-container',
 	]
 );
+
 // button share in pages
 share_page_button();
+
+// alert banner top page
+alert_banner_top();
+
 /**
  * Fires immediately after the site container opening markup, before `genesis_header` action hook.
  *

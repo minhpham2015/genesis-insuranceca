@@ -14,14 +14,16 @@
                 padding-right: 15px;
                 padding-right: 20px;
                 margin-right: 8px;
+                text-decoration: underline;
                 &:focus{
-                    outline-offset: none;
+                    outline-offset: 0;
+                    outline: none;
                 }
                 &:before{
-                    content: "\f054";
+                    content: "\f105";
                     display: inline-block;
                     font: normal normal normal 14px/1 FontAwesome;
-                    font-size: 13px;
+                    font-size: 20px;
                     line-height: inherit;
                     // font-weight: inherit;
                     // font-family: inherit;
@@ -30,6 +32,23 @@
                     top: 50%;
                     right: 0;
                     transform: translateY(-50%);
+                }
+            }
+        }
+    }
+    &.elementor-widget-form{
+        .elementor-form{
+            input, textarea, button{
+                &:focus{
+                    box-shadow: none;
+                    outline: none;
+                }
+            }
+            .elementor-field-group{
+                .elementor-field-label{
+                    &:after{
+                        color: inherit;
+                    }
                 }
             }
         }
