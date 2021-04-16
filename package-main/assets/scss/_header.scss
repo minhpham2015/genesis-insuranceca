@@ -1,5 +1,5 @@
 .site-header{
-  padding: 9px 60px 0 60px;
+  padding: 9px 60px 50px 60px;
   position: initial;
   background: $main-color;
   box-shadow: none;
@@ -7,6 +7,7 @@
     display: flex;
     justify-content: space-between;
     max-width: 1282px;
+    align-items: center;
   }
   .title-area{
     width: 20%;
@@ -80,7 +81,7 @@
         margin-left: 10px;
       }
     }
-    >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_dropdown_menu{
+    >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_dropdown_menu,>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu{
       ul.wp-megamenu-sub-menu{
         margin-top: 12px;
         &:before{
@@ -99,7 +100,7 @@
             border-top: none;
             border-right: 12px solid transparent;
             border-left: 12px solid transparent;
-            border-bottom: 12px solid $main-color;
+            border-bottom: 12px solid #fff;
         }
       }
       &:last-child{
@@ -107,6 +108,21 @@
           &:after{
              left: inherit;
              right: 40px;
+          }
+        }
+      }
+    }
+    >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu{
+      ul.wp-megamenu-sub-menu{
+        &:after{
+           left: inherit;
+        }
+      }
+      &:last-child{
+        ul.wp-megamenu-sub-menu{
+          &:after{
+             left: inherit;
+             right: inherit;
           }
         }
       }
@@ -121,7 +137,6 @@
     line-height: 1;
     cursor: pointer;
     position: relative;
-    top: 30px;
     .fa{
       color: #fff;
       &:before{

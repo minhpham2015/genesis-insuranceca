@@ -22,5 +22,4 @@ function comparesolar_call_phone( $atts ) {
 		endif;
     return ob_get_clean();
 }
-
- ?>
+?>
