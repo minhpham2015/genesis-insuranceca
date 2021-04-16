@@ -127,6 +127,27 @@
         }
       }
     }
+    .wpmm-nav-wrap{
+      ul.wp-megamenu .wpmm_mega_menu{
+        .wp-megamenu-sub-menu{
+            .wpmm-item-title{
+              font-size: 15px;
+              font-weight: bold;
+              font-stretch: normal;
+              font-style: normal;
+              line-height: 1.6;
+              letter-spacing: normal;
+              color: #2f2f39;
+              padding-bottom: 3px;
+              border-bottom: solid 1px #2f2f39;
+              margin-bottom: 15px;
+            }
+          }
+          li a{
+            padding: 0;
+          }
+        }
+    }
   }
   .header-search{
     width: 22px;
