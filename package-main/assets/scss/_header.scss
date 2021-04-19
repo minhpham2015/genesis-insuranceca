@@ -168,6 +168,7 @@
       line-height: 1;
       cursor: pointer;
       position: relative;
+      z-index: 2;
       .fa{
         color: #fff;
         &:before{

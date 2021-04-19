@@ -117,12 +117,7 @@ function insuranceca_search_default_template(){
         <img src="<?php echo PJ_URI; ?>assets/images/logo-green.png" alt="">
       </div>
       <div class="template-search">
-        <form class="search-form" method="get" action="<?php echo get_site_url(); ?>" role="search" itemprop="potentialAction" itemscope="" itemtype="https://schema.org/SearchAction">
-          <input class="search-form-input" type="search" name="s" id="searchform" value="<?php echo isset($_GET['s']) ? $_GET['s'] : ''; ?>" itemprop="query-input" placeholder="Search for lorem ipsum and more">
-          <button type="submit" name="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-          <meta content="<?php echo get_site_url(); ?>/?s={s}" itemprop="target">
-        </form>
-        <?php echo ins_load_template_filter(); ?>
+        <?php echo do_shortcode('[elementor-template id="135"]'); ?>
       </div>
   </div>
   <?php
