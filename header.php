@@ -66,6 +66,12 @@ share_page_button();
 // alert banner top page
 alert_banner_top();
 
+genesis_markup(
+	[
+		'open'    => '<div %s>',
+		'context' => 'header-main',
+	]
+);
 /**
  * Fires immediately after the site container opening markup, before `genesis_header` action hook.
  *
@@ -85,6 +91,14 @@ do_action( 'genesis_header' );
  * @since 1.0.0
  */
 do_action( 'genesis_after_header' );
+
+genesis_markup(
+	[
+		'close'   => '</div>',
+		'context' => 'header-main',
+	]
+);
+
 
 genesis_markup(
 	[
