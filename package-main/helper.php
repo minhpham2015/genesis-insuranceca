@@ -117,35 +117,7 @@ function insuranceca_search_default_template(){
         <img src="<?php echo PJ_URI; ?>assets/images/logo-green.png" alt="">
       </div>
       <div class="template-search">
-        <?php echo do_shortcode('[elementor-template id="135"]'); ?>
-      </div>
-  </div>
-  <?php
-}
-
-//Template filter
-function ins_load_template_filter(){
-  ?>
-  <div class="template-filter-form">
-      <div class="__filter-suggestion">
-
-        <div class="load-suggestion">
-          Suggestions:
-          <div class="list-suggestions">
-            <a href="#">lorem ipsum</a>,
-            <a href="#">dolor semet</a>,
-            <a href="#">sed it embaco</a>
-          </div>
-        </div>
-
-        <div class="btn-filter">
-          <i class="fa fa-caret-right" aria-hidden="true"></i>
-          Filters
-        </div>
-
-      </div>
-      <div class="__filter-options">
-
+        <?php echo do_shortcode(get_field('search_nav','options')); ?>
       </div>
   </div>
   <?php
