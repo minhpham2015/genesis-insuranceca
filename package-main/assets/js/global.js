@@ -17,15 +17,7 @@
             src: '#ins_form_search'
           },
           type: 'inline',
-          mainClass: 'mfp-with-zoom',
-          zoom: {
-            enabled: true, // By default it's false, so don't forget to enable it
-            duration: 300, // duration of the effect, in milliseconds
-            easing: 'ease-in-out', // CSS transition easing function
-            opener: function(openerElement) {
-              return openerElement.is('img') ? openerElement : openerElement.find('img');
-            }
-          }
+          closeBtnInside: true
         });
       });
 
