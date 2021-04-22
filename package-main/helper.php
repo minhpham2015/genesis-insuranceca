@@ -181,8 +181,8 @@ function insuranceca_footer_top_template($output){
 // alert banner top page
 function alert_banner_top(){
     $active_banner = get_field('show_or_hiden_alert_banner_top');
-    $heading_banner = get_field('heading_alert_banner_insuranceca', 'option');
-    $content_banner = get_field('content_alert_banner_insuranceca', 'option');
+    $heading_banner = get_field('heading_alert_banner_insuranceca');
+    $content_banner = get_field('content_alert_banner_insuranceca');
     if ($active_banner) { ?>
         <div id="bt-alert-banner-top" class="alert-banner-top">
                 <div class="conatiner-alert-banner-top">
