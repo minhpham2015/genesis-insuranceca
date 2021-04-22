@@ -35,6 +35,11 @@ do_action( 'genesis_meta' );
 wp_head(); // We need this for plugins.
 ?>
 </head>
+<style type="text/css">
+	.header-main{ background: <?php the_field('background_color_heading'); ?>; }
+	.header-main .header-socials .wrap a{ color: <?php the_field('background_color_heading'); ?>; }
+	.site-inner{ padding-top: <?php the_field('padding_top_site_inner'); ?>; }
+</style>
 <?php
 genesis_markup(
 	[
