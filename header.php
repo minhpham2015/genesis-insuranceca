@@ -53,6 +53,12 @@ wp_head(); // We need this for plugins.
 		width: 100%;
 		background: transparent !important;
 	}
+	.header-main .header-socials .wrap a {
+	    z-index: 9;
+	}
+	.header-main .site-header .title-area{
+	    z-index: 9;
+	}
 	</style>
 <?php endif; ?>
 <?php
