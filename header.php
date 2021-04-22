@@ -43,7 +43,7 @@ wp_head(); // We need this for plugins.
 <?php endif; ?>
 <?php if( get_field('padding_top_site_inner') ): ?>
 	<style type="text/css">
-		body.elementor-template-full-width .site-inner{ padding-top: <?php the_field('padding_top_site_inner'); ?>px; }
+		body.elementor-template-full-width .site-inner{ padding-top: 0px; }
 	</style>
 <?php endif; ?>
 <?php if( get_field('header_position_absolute_transparent') ): ?>
