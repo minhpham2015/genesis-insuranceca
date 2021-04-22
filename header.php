@@ -35,11 +35,26 @@ do_action( 'genesis_meta' );
 wp_head(); // We need this for plugins.
 ?>
 </head>
-<style type="text/css">
-	.header-main{ background: <?php the_field('background_color_heading'); ?>; }
-	.header-main .header-socials .wrap a{ color: <?php the_field('background_color_heading'); ?>; }
-	body.elementor-template-full-width .site-inner{ padding-top: <?php the_field('padding_top_site_inner'); ?>; }
-</style>
+<?php if( get_field('background_color_heading') ): ?>
+	<style type="text/css">
+		.header-main{ background: <?php the_field('background_color_heading'); ?>; }
+		.header-main .header-socials .wrap a{ color: <?php the_field('background_color_heading'); ?>; }
+	</style>
+<?php endif; ?>
+<?php if( get_field('padding_top_site_inner') ): ?>
+	<style type="text/css">
+		body.elementor-template-full-width .site-inner{ padding-top: <?php the_field('padding_top_site_inner'); ?>; }
+	</style>
+<?php endif; ?>
+<?php if( get_field('header_position_absolute_transparent') ): ?>
+	<style type="text/css">
+	.header-main {
+		position: absolute;
+		width: 100%;
+		background: transparent !important;
+	}
+	</style>
+<?php endif; ?>
 <?php
 genesis_markup(
 	[
