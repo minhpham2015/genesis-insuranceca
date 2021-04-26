@@ -72,7 +72,7 @@ function insuranceca_custom_post_type() {
 			'hierarchical' => false,
 			/* the next one is important, it tells what's enabled in the post editor */
       'supports' => array( 'title', 'editor', 'author', 'thumbnail')
-	 	) /* end of options */
+	 	) /* end of options */ 
 	); /* end of register post type */
 
 
