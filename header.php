@@ -59,6 +59,13 @@ wp_head(); // We need this for plugins.
 	.header-main .site-header .title-area{
 	    z-index: 9;
 	}
+	.header-main .header-socials .wrap a {
+    background: transparent;
+    color: #fff;
+	}
+	.header-main .header-socials .wrap a .fa:before {
+    font-size: 17px;
+	}
 	</style>
 <?php endif; ?>
 <?php
