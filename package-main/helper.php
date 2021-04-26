@@ -177,7 +177,6 @@ function insuranceca_footer_top_template($output){
   return $footer_top.$output;
 }
 
-
 // alert banner top page
 function alert_banner_top(){
     $active_banner = get_field('show_or_hiden_alert_banner_top');
@@ -201,4 +200,9 @@ function alert_banner_top(){
         </div>
     <?php
     }
+}
+
+//Change default length text
+function insuranceca_excerpt_length_text(){
+  return 40;
 }

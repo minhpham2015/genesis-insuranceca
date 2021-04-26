@@ -27,3 +27,6 @@ add_action('upload_mimes', 'package_main_types_to_uploads');
 //Menu main
 add_action( 'genesis_header', 'genesis_do_nav' , 12 );
 add_action( 'genesis_header', 'header_top_right_widget', 12 );
+
+//Change length text default
+add_filter( 'excerpt_length', 'insuranceca_excerpt_length_text' , 20 );
