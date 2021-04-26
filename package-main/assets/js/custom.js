@@ -51,5 +51,6 @@
         copyLinkPageCurrent();
         hiddenAlertBannerTop();
     });
+    
 
 } )( window, jQuery )
