@@ -59,8 +59,9 @@ function insuranceca_custom_post_type() {
 				'parent_item_colon' => ''
 			), /* end of arrays */
 			'public' => true,
-			'publicly_queryable' => false,
+			'publicly_queryable' => true,
 			'exclude_from_search' => false,
+			'show_in_admin_status_list' => true,
 			'show_ui' => true,
 			'query_var' => true,
 			'menu_position' => 10, /* this is what order you want it to appear in on the left hand side menu */
@@ -111,6 +112,8 @@ function insuranceca_custom_post_type() {
 
 }
 function insuranceca_custom_taxonomy(){
+
+	//Types
 	register_taxonomy(
         'ins-type',  // The name of the taxonomy. Name should be in slug form (must not contain capital letters or spaces).
         'resources', // post type name
@@ -124,6 +127,8 @@ function insuranceca_custom_taxonomy(){
             )
         )
     );
+
+		//Topics
 		register_taxonomy(
 	        'ins-topic',  // The name of the taxonomy. Name should be in slug form (must not contain capital letters or spaces).
 	        'resources', // post type name
@@ -137,4 +142,20 @@ function insuranceca_custom_taxonomy(){
 	            )
 	        )
 	    );
+
+		//Category FAQs
+		register_taxonomy(
+					'cat-faq',  // The name of the taxonomy. Name should be in slug form (must not contain capital letters or spaces).
+					'ins-faqs', // post type name
+					array(
+							'hierarchical' => true,
+							'label' => 'Category', // display name
+							'query_var' => true,
+							'rewrite' => array(
+									'slug' => 'cat-faq',    // This controls the base slug that will display before each term
+									'with_front' => false  // Don't display the category base before
+							)
+					)
+			);
+
 }
