@@ -71,17 +71,40 @@
     }
     #wp-megamenu-primary{
       width: calc(100% - 125px);
-      >.wpmm-nav-wrap ul.wp-megamenu>li>a{
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        color: #fff;
-        font-weight: 600;
-        .fa-angle-down{
-          &:before{
-            font-size: 20px;
+      >.wpmm-nav-wrap ul.wp-megamenu>li.menu-item{
+        >a{
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          color: #fff;
+          font-weight: 600;
+          .fa-angle-down{
+            &:before{
+              font-size: 20px;
+            }
+            margin-left: 10px;
           }
-          margin-left: 10px;
+        }
+        &.current-menu-item{
+          a{
+            &:before{
+              content: "";
+              position: absolute;
+              width: calc(100% - 20px);
+              height: 1px;
+              background: #fff;
+              display: inline-block;
+              left: 10px;
+              margin-top: 20px;
+            }
+          }
+          &.menu-item-has-children,&.wpmm_mega_menu{
+            a{
+              &:before{
+                width: calc(100% - 40px);
+              }
+            }
+          }
         }
       }
       >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_dropdown_menu,>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu{
