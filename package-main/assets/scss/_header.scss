@@ -257,6 +257,10 @@
     color: #333;
   }
   .footer-top .wrap {
-    display: inline-block;
+    display: inline-block !important;
+  }
+  .footer-top .wrap .footer-top--left,.footer-top .wrap .footer-top--right {
+    width: 100%;
+    max-width: 100%;
   }
 }
