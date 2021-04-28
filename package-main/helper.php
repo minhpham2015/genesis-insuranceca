@@ -1,5 +1,6 @@
 <?php
 use ScssPhp\ScssPhp\Compiler;
+use Smalot\PdfParser\Parser;
 
 if( ! function_exists( 'package_main_scss_compiler' ) ) {
     /**
@@ -184,19 +185,19 @@ function alert_banner_top(){
     $content_banner = get_field('content_alert_banner_insuranceca');
     if ($active_banner) { ?>
         <div id="bt-alert-banner-top" class="alert-banner-top">
-                <div class="conatiner-alert-banner-top">
-                    <div class="meta-banner">
-                        <?php if ($heading_banner): ?>
-                            <h2 class="heading-banner"> <?php echo $heading_banner ?> </h2>
-                        <?php endif; ?>
-                        <?php if ($content_banner): ?>
-                            <div class="content-banner"> <?php echo $content_banner ?>  </div>
-                        <?php endif; ?>
-                    </div>
+            <div class="conatiner-alert-banner-top">
+                <div class="meta-banner">
+                    <?php if ($heading_banner): ?>
+                        <h2 class="heading-banner"> <?php echo $heading_banner ?> </h2>
+                    <?php endif; ?>
+                    <?php if ($content_banner): ?>
+                        <div class="content-banner"> <?php echo $content_banner ?>  </div>
+                    <?php endif; ?>
                 </div>
-                <div class="cta-close">
-                    <img src="<?php echo PJ_URI;?>/assets/images/icon-cancel-white.svg" alt="copy">
-                </div>
+            </div>
+            <div class="cta-close">
+                <img src="<?php echo PJ_URI;?>/assets/images/icon-cancel-white.svg" alt="copy">
+            </div>
         </div>
     <?php
     }
@@ -205,4 +206,34 @@ function alert_banner_top(){
 //Change default length text
 function insuranceca_excerpt_length_text(){
   return 40;
+}
+
+//Save post
+function acf_save_resources($post_id){
+  if(get_post_type($post_id) != 'resources') return;
+  $acf = $_POST['acf'];
+  $old_val = get_field('upload_file',$post_id);
+  $field = get_field_object('upload_file');
+  $key = $field['key'];
+  $file_id = $acf[$key];
+  if($file_id != $old_val['ID']){
+    $post_ARR['ID'] = $post_id;
+    if($file_id){
+      $file = get_attached_file($file_id);
+      $post_ARR['post_content'] = parsePDF($file);
+    }else{
+      $post_ARR['post_content'] = '';
+    }
+    wp_update_post( $post_ARR );
+  }
+}
+
+//Parser
+function parsePDF($filename)
+{
+    //Parse pdf file and build necessary objects.
+     $parser = new Parser();
+     $pdf = $parser->parseFile($filename);
+     $text = $pdf->getText();
+     return $text;
 }

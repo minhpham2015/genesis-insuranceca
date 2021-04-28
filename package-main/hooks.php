@@ -30,3 +30,6 @@ add_action( 'genesis_header', 'header_top_right_widget', 12 );
 
 //Change length text default
 add_filter( 'excerpt_length', 'insuranceca_excerpt_length_text' , 20 );
+
+//Save post
+add_action('acf/save_post', 'acf_save_resources' , 5);
