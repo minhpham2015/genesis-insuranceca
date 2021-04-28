@@ -234,4 +234,16 @@
   header.site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu {
     display: none;
   }
+  .header-main .header-socials,.header-main .site-header .header-search{
+    display: none;
+  }
+  .header-main {
+      padding: 30px 10px;
+  }
+  .header-main .wpmm-mobile-menu a.wpmm_mobile_menu_btn{
+    padding: 0
+  }
+  .header-main .wpmm-mobile-menu a.wpmm_mobile_menu_btn i{
+    font-size: 26px !important;
+  }
 }
