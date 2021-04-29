@@ -82,7 +82,7 @@ Requires PHP: 5.6
     border-radius: 5px;
 }
 ol, ul {
-    padding-left: 30px;
+    padding-left: 30px !important;
 }
 ol li, ul li{
   list-style-type: inherit;
