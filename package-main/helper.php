@@ -213,18 +213,18 @@ function acf_save_resources($post_id){
   if(get_post_type($post_id) != 'resources') return;
   $acf = $_POST['acf'];
   $old_val = get_field('upload_file',$post_id);
-  $field = get_field_object('upload_file');
-  $key = $field['key'];
+  $field1 = get_field_object('upload_file');
+  $field2 = get_field_object('content_file');
+  $key = $field1['key'];
   $file_id = $acf[$key];
   if($file_id != $old_val['ID']){
-    $post_ARR['ID'] = $post_id;
     if($file_id){
       $file = get_attached_file($file_id);
-      $post_ARR['post_content'] = parsePDF($file);
+      $content = parsePDF($file);
+      $_POST['acf'][$field2['key']] = $content;
     }else{
-      $post_ARR['post_content'] = '';
+      $_POST['acf'][$field2['key']] = '';
     }
-    wp_update_post( $post_ARR );
   }
 }
 
@@ -236,4 +236,10 @@ function parsePDF($filename)
      $pdf = $parser->parseFile($filename);
      $text = $pdf->getText();
      return $text;
+}
+
+//Style admin
+add_action('admin_head', 'my_custom_fonts');
+function my_custom_fonts() {
+  echo '<style>div[data-name="content_file"]{display:none;}</style>';
 }

@@ -110,6 +110,9 @@
       >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_dropdown_menu,>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu{
         >ul.wp-megamenu-sub-menu{
           margin-top: 12px;
+          ul{
+            padding: 0 !important;
+          }
           &:before{
             content: "";
             position: absolute;
