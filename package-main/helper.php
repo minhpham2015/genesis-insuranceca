@@ -213,6 +213,7 @@ function acf_save_resources($post_id){
   if(get_post_type($post_id) != 'resources') return;
   $acf = $_POST['acf'];
   $old_val = get_field('upload_file',$post_id);
+  $old_val2 = get_field('content_file',$post_id);
   $field1 = get_field_object('upload_file');
   $field2 = get_field_object('content_file');
   $key = $field1['key'];
@@ -224,6 +225,12 @@ function acf_save_resources($post_id){
       $_POST['acf'][$field2['key']] = $content;
     }else{
       $_POST['acf'][$field2['key']] = '';
+    }
+  }else{
+    if($file_id && trim($old_val2) == ''){
+      $file = get_attached_file($file_id);
+      $content = parsePDF($file);
+      $_POST['acf'][$field2['key']] = $content;
     }
   }
 }
