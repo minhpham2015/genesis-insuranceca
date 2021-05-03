@@ -102,7 +102,7 @@ function ins_socials_template(){
     <div class="header-socials">
         <div class="wrap">
             <?php foreach ($socials as $key => $social) {
-                ?> <a href="<?php echo $social['link']; ?>" target="_blank"><i class="fa <?php echo $social['icon']; ?>" aria-hidden="true"></i></a> <?php
+                ?> <a href="<?php echo $social['link']; ?>" target="_blank"> <img src="<?php echo $social['icon']; ?>" alt=""> </a> <?php
             } ?>
         </div>
     </div>
