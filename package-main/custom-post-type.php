@@ -72,7 +72,7 @@ function insuranceca_custom_post_type() {
 			'hierarchical' => false,
 			/* the next one is important, it tells what's enabled in the post editor */
       'supports' => array( 'title', 'editor', 'author', 'thumbnail')
-	 	) /* end of options */ 
+	 	) /* end of options */
 	); /* end of register post type */
 
 
@@ -106,7 +106,7 @@ function insuranceca_custom_post_type() {
 			'capability_type' => 'post',
 			'hierarchical' => false,
 			/* the next one is important, it tells what's enabled in the post editor */
-	  'supports' => array( 'title', 'editor', 'author', 'thumbnail')
+	  'supports' => array( 'title', 'editor', 'author', 'thumbnail', 'page-attributes')
 		) /* end of options */
 	); /* end of register post type */
 
