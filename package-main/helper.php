@@ -250,3 +250,31 @@ add_action('admin_head', 'my_custom_fonts');
 function my_custom_fonts() {
   echo '<style>div[data-name="content_file"]{display:none;}</style>';
 }
+
+
+
+
+// Add the custom columns order to the team post type:
+add_filter( 'manage_team_posts_columns', 'set_custom_edit_team_columns' );
+function set_custom_edit_team_columns($columns) {
+    // unset( $columns['author'] );
+    $columns['team_order'] = __( 'Order', 'your_text_domain' );
+    return $columns;
+}
+
+// get data order columns
+add_action( 'manage_team_posts_custom_column' , 'get_order_column', 10, 2 );
+function get_order_column( $column, $post_id ) {
+    switch ( $column ) {
+
+        case 'team_order' :
+
+            // echo get_post_meta( $post_id , 'page-attributes' , true );
+
+            $team = get_post($post_id);
+            echo $team ->menu_order;
+
+            break;
+
+    }
+}
