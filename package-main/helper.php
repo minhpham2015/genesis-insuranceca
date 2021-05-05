@@ -256,6 +256,7 @@ function my_custom_fonts() {
 
 // Add the custom columns order to the team post type:
 add_filter( 'manage_team_posts_columns', 'set_custom_edit_team_columns' );
+add_filter( 'manage_ins-faqs_posts_columns', 'set_custom_edit_team_columns' );
 function set_custom_edit_team_columns($columns) {
     // unset( $columns['author'] );
     $columns['team_order'] = __( 'Order', 'your_text_domain' );
@@ -264,6 +265,7 @@ function set_custom_edit_team_columns($columns) {
 
 // get data order columns
 add_action( 'manage_team_posts_custom_column' , 'get_order_column', 10, 2 );
+add_action( 'manage_ins-faqs_posts_custom_column' , 'get_order_column', 10, 2 );
 function get_order_column( $column, $post_id ) {
     switch ( $column ) {
 
