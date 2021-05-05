@@ -117,6 +117,17 @@
           ul{
             padding: 0 !important;
           }
+          li{
+            &.menu-icon{
+              a{
+                padding-left: 30px;
+                .wpmm-selected-icon{
+                  position: absolute;
+                  left: 0;
+                }
+              }
+            }
+          }
           &:before{
             content: "";
             position: absolute;
