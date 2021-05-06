@@ -209,28 +209,55 @@ function insuranceca_excerpt_length_text(){
 }
 
 //Save post
+$field1 = get_field_object('upload_file');
+print_r($field1);
 function acf_save_resources($post_id){
   if(get_post_type($post_id) != 'resources') return;
   $acf = $_POST['acf'];
-  $old_val = get_field('upload_file',$post_id);
-  $old_val2 = get_field('content_file',$post_id);
-  $field1 = get_field_object('upload_file');
-  $field2 = get_field_object('content_file');
-  $key = $field1['key'];
-  $file_id = $acf[$key];
-  if($file_id != $old_val['ID']){
-    if($file_id){
-      $file = get_attached_file($file_id);
-      $content = parsePDF($file);
-      $_POST['acf'][$field2['key']] = $content;
+  $old_val      = get_field('upload_file',$post_id);
+  $old_val2     = get_field('content_file',$post_id);
+  $old_val3     = get_field('link_html',$post_id);
+  $old_val4     = get_field('select_type_resources',$post_id);
+  $field1       = get_field_object('upload_file');
+  $field2       = get_field_object('content_file');
+  $field3       = get_field_object('select_type_resources');
+  $field4       = get_field_object('link_html');
+  $key1 = 'field_6073f8a89e05c';
+  $key2 = 'field_608a54d6f0770';
+  $key3 = 'field_609257c677695';
+  $key4 = 'field_6092597277696';
+  $key          = (isset($field1['key'])) ? $field1['key'] : $key1;
+  $file_id      = (isset($acf[$key])) ? $acf[$key] : $acf[$key1];
+  $type_sources = (isset($acf[$field3['key']])) ? $acf[$field3['key']] : $acf[$key3];
+  $key_content  = (isset($field2['key'])) ? $field2['key'] : $key2;
+  if(isset($type_sources) && $type_sources == 'HTML'){
+    $link_html = (isset($acf[$field4['key']])) ? $acf[$field4['key']] : $acf[$key4];
+    if($link_html != $old_val3){
+      if($link_html){
+        $_POST['acf'][$key_content] = file_get_contents($link_html);
+      }else{
+        $_POST['acf'][$key_content] = '';
+      }
     }else{
-      $_POST['acf'][$field2['key']] = '';
+      if(($link_html && trim($old_val2) == '') || ($link_html && $old_val4 != $type_sources)){
+        $_POST['acf'][$key_content] = file_get_contents($link_html);
+      }
     }
   }else{
-    if($file_id && trim($old_val2) == ''){
-      $file = get_attached_file($file_id);
-      $content = parsePDF($file);
-      $_POST['acf'][$field2['key']] = $content;
+    if($file_id != $old_val['ID']){
+      if($file_id){
+        $file = get_attached_file($file_id);
+        $content = parsePDF($file);
+        $_POST['acf'][$key_content] = $content;
+      }else{
+        $_POST['acf'][$key_content] = '';
+      }
+    }else{
+      if(($file_id && trim($old_val2) == '') || ($file_id && $old_val4 != $type_sources)){
+        $file = get_attached_file($file_id);
+        $content = parsePDF($file);
+        $_POST['acf'][$key_content] = $content;
+      }
     }
   }
 }
