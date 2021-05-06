@@ -1,6 +1,6 @@
 <?php
 
-add_action('acf/init', 'package_main_acf_init');
+add_action('init', 'package_main_acf_init');
 function package_main_acf_init() {
 	if( function_exists('acf_add_options_page') ) {
 		if( current_user_can( 'administrator' ) ):

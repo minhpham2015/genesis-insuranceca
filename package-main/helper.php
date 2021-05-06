@@ -311,3 +311,58 @@ function get_order_column( $column, $post_id ) {
 
     }
 }
+
+
+{
+  /* Import PDF to Resources*/
+  add_action('template_include','load_template_import');
+  function load_template_import($template){
+    if(isset($_GET['action']) && $_GET['action'] == 'import'){
+      $type = $_GET['type'];
+      if($type){
+        $template = locate_template( array( 'template-import-resources.php' ) );
+      }else{
+        wp_die('Please chosen for type Resources to import: "&type=[Type Resources]"');
+      }
+    }
+    return $template;
+  }
+
+  add_action('init','run_import_resources');
+  function run_import_resources(){
+    global $error_import;
+    if(isset($_POST['action-import']) && isset($_FILES['file-import'])){
+
+      require_once PJ_DIR."lib/SimpleXLSX.php";
+
+      $type = $_GET['type'];
+      $upload_dir = wp_upload_dir();
+      $file = $_FILES['file-import'];
+      $resources_dir = $upload_dir['basedir'].'/resources/'.$type.'/';
+
+      if ( $xlsx = SimpleXLSX::parse($file['tmp_name']) ) {
+
+        foreach( $xlsx->rows() as $k => $r) {
+
+          if($r[1] == 'Numbered File Name Prefix') continue;
+          $pdf_name = $r[1];
+          $date = $r[2];
+          $title = $r[3];
+
+          $files = scandir($resources_dir);
+          echo $pdf_name;
+          print_r($files);
+          foreach ($files as $file) {
+              if (strpos($pdf_name, $file) !== false) {
+                   echo $file;die;
+              }
+          }
+
+        }
+
+      } else {
+      	$error_import = SimpleXLSX::parseError();
+      }
+    }
+  }
+}
