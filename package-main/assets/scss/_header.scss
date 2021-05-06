@@ -81,6 +81,8 @@
           font-weight: 600;
           font-size: 14px;
           position: relative;
+          padding-top: 0;
+          padding-bottom: 0;
           .fa-angle-down{
             &:before{
               font-size: 20px;
@@ -98,7 +100,7 @@
               background: #fff;
               display: inline-block;
               left: 10px;
-              margin-top: 25px;
+              bottom: 0;
             }
           }
           &.menu-item-has-children,&.wpmm_mega_menu{
