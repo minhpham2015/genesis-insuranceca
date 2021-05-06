@@ -164,6 +164,49 @@
           }
         }
       }
+
+      >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu>ul.wp-megamenu-sub-menu{
+         padding-left: 57px !important;
+         > li{
+             > .wp-megamenu-sub-menu{
+                 margin-left: -25px;
+                 margin-right: -25px;
+                 > li{
+                     padding-left: 25px;
+                     padding-right: 25px;
+                     .wpmm-item-title{
+                         margin-top: 5px;
+                     }
+                 }
+             }
+         }
+
+     }
+
+     ul.wp-megamenu{
+         width: 100%;
+         height: auto;
+         li.wpmm_mega_menu{
+            > ul.wp-megamenu-sub-menu{
+                 padding-left: 57px !important;
+                 li.custom-menu-icon{
+                     > a{
+                         padding-left: 25px !important;
+                         .wpmm-selected-icon{
+                             left: 0 !important;
+                         }
+                     }
+                 }
+                   .wpmm-selected-icon i{
+                       font-size: 15px;
+                   }
+                > .wp-megamenu-sub-menu{
+                    height: auto;
+                }
+             }
+         }
+    }
+          
       >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu{
         >ul.wp-megamenu-sub-menu{
           &:after{
