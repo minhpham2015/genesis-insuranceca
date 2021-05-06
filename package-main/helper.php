@@ -267,7 +267,11 @@ function parsePDF($filename)
 {
     //Parse pdf file and build necessary objects.
      $parser = new Parser();
-     $pdf = $parser->parseFile($filename);
+     try{
+        $pdf = $parser->parseFile($filename);
+      }catch(ParseError $p){
+        wp_die($p->getMessage());
+      }
      $text = $pdf->getText();
      return $text;
 }
