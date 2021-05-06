@@ -2,7 +2,7 @@
   padding: 0;
   border: none;
   .wrap{
-    max-width: 1044px;
+    max-width: 805px;
     p{
       padding: 18px 0 56px;
       border-top: 1px solid #e5e3dc;
@@ -45,6 +45,7 @@
         .menu{
           display: flex;
           flex-wrap: wrap;
+          padding-left: 0 !important;
           .menu-item{
             width: 33%;
             margin-bottom: 6px;
@@ -63,6 +64,7 @@
     }
     &.footer-widgets-2{
       width: 40%;
+      padding-right: 0;
     }
   }
   .footer-social{
