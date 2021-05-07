@@ -89,7 +89,7 @@
           }
         }
         &.current-menu-item,&.current-menu-ancestor{
-          a{
+          >a{
             &:before{
               content: "";
               position: absolute;
@@ -206,7 +206,7 @@
              }
          }
     }
-          
+
       >.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu{
         >ul.wp-megamenu-sub-menu{
           &:after{

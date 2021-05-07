@@ -330,39 +330,152 @@ function get_order_column( $column, $post_id ) {
 
   add_action('init','run_import_resources');
   function run_import_resources(){
-    global $error_import;
-    if(isset($_POST['action-import']) && isset($_FILES['file-import'])){
+  global $error_import;
+  if(isset($_POST['action-import']) && isset($_FILES['file-import'])){
 
-      require_once PJ_DIR."lib/SimpleXLSX.php";
+    require_once PJ_DIR."lib/SimpleXLSX.php";
 
-      $type = $_GET['type'];
-      $upload_dir = wp_upload_dir();
-      $file = $_FILES['file-import'];
-      $resources_dir = $upload_dir['basedir'].'/resources/'.$type.'/';
+    $type = $_GET['type'];
+    $upload_dir = wp_upload_dir();
+    $file = $_FILES['file-import'];
+    $resources_dir = $upload_dir['basedir'].'/resources/'.$type.'/';
 
-      if ( $xlsx = SimpleXLSX::parse($file['tmp_name']) ) {
+    if ( $xlsx = SimpleXLSX::parse($file['tmp_name']) ) {
 
-        foreach( $xlsx->rows() as $k => $r) {
+  $month_arr = array(
+    'Jan' => '01',
+    'Feb' => '02',
+    'Mar' => '03',
+    'Apr' => '04',
+    'May' => '05',
+    'Jun' => '06',
+    'Jul' => '07',
+    'Aug' => '08',
+    'Sept' => '09',
+    'Sep' => '09',
+    'Oct' => '10',
+    'Nov' => '11',
+    'Dec' => '12'
+  );
 
-          if($r[1] == 'Numbered File Name Prefix') continue;
-          $pdf_name = $r[1];
-          $date = $r[2];
-          $title = $r[3];
+      foreach( $xlsx->rows() as $k => $r) {
 
-          $files = scandir($resources_dir);
-          echo $pdf_name;
-          print_r($files);
-          foreach ($files as $file) {
-              if (strpos($pdf_name, $file) !== false) {
-                   echo $file;die;
+            //get year
+            if($r[1] == 'Numbered File Name Prefix'){
+               $year = $r[0];
+               continue;
               }
+
+              if($year == 2011){
+
+                //Check data empty
+                if(trim($r[1]) == '') continue;
+
+                //Get month
+                $month = (trim($r[0]) != '') ? $month_arr[$r[0]] : $month;
+                $pdf_name = $r[1]; //PDF name
+                $date = $r[2]; //PDF date
+                $title = $r[3]; //Title
+
+                $dir_path_file = $resources_dir.$year.'/'.$year.'_'.$month;
+                $name_file = '';
+                $path_file = '';
+                $content = '';
+
+                //Find file in folder
+                $files = scandir($dir_path_file);
+                foreach ($files as $f) {
+                  if (strpos($pdf_name, $f) !== false && $f != '.' && $f != '..') {
+                     $name_file = $f;
+                  }
+                }
+
+                // Get path file
+                if($name_file){
+                 $path_file = $dir_path_file.'/'.$name_file;
+                }
+
+                //Get content file PDF
+                if($path_file){
+                $parser = new Parser();
+                $pdf = $parser->parseFile($path_file);
+                $content = $pdf->getText();
+
+                //add file to Media
+                require_once(ABSPATH . 'wp-admin/includes/image.php');
+                require_once(ABSPATH . 'wp-admin/includes/post.php');
+
+                $upload_folder = $upload_dir['path'];
+
+                // Set filename, incl path
+                $filename = 'resources/'.$type.'/'.$year.'/'.$year.'_'.$month.'/'.$name_file;
+
+                // Check the type of file. We'll use this as the 'post_mime_type'.
+                $filetype = wp_check_filetype( basename( $filename ), null );
+
+                // Get file title
+                $title_file = preg_replace( '/\.[^.]+$/', '', basename( $name_file ) );
+
+                // Prepare an array of post data for the attachment.
+                $attachment_data = array(
+                  'guid'           => $upload_dir['url'] . '/' . basename( $filename ),
+                  'post_mime_type' => $filetype['type'],
+                  'post_title'     => $title_file,
+                  'post_content'   => '',
+                  'post_status'    => 'inherit'
+                );
+
+                // Does the attachment already exist ?
+                if( post_exists( $title_file ) ){
+                  $attachment = get_page_by_title( $title_file, OBJECT, 'attachment');
+                  if( !empty( $attachment ) ){
+                    $attachment_data['ID'] = $attachment->ID;
+                  }
+                }
+
+                // If no parent id is set, reset to default(0)
+                if( empty( $parent_id ) ){
+                  $parent_id = 0;
+                }
+
+                // Insert the attachment.
+                $attach_id = wp_insert_attachment( $attachment_data, $filename, $parent_id );
+
+                // Generate the metadata for the attachment, and update the database record.
+                $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+                wp_update_attachment_metadata( $attach_id, $attach_data );
+
+                if(!($check_resources = post_exists($title))){
+                  $timestamp = strtotime(str_replace('/', '-', $date));
+                  // Create post object
+                  $resources = array(
+                    'post_title'    => $title,
+                    'post_status'   => 'publish',
+                    'post_author'   => 1,
+                    'post_date'     => date('Y-m-d',$timestamp),
+                    'post_type'	  => 'resources'
+                  );
+                  // Insert the post into the database
+                  $res_id = wp_insert_post( $resources );
+                }else{
+                  $res_id = $check_resources;
+                }
+
+                $featured_id = get_field('featured_image_import','options');
+
+                //Update data
+                update_field('upload_file',$attach_id,$res_id);
+                update_field('content_file',$content,$res_id);
+                wp_set_object_terms( $res_id, strtolower($type) , 'ins-type' );
+                set_post_thumbnail( $res_id, $featured_id );
+
+                }
+              }
+            }
+
+          } else {
+            $error_import = SimpleXLSX::parseError();
           }
-
         }
-
-      } else {
-      	$error_import = SimpleXLSX::parseError();
       }
-    }
-  }
 }
