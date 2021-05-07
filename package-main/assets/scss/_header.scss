@@ -89,7 +89,7 @@
           }
         }
         &.current-menu-item,&.current-menu-ancestor{
-          >a{
+          a{
             &:before{
               content: "";
               position: absolute;
@@ -291,18 +291,44 @@
     }
   }
 }
+@media (max-width: 1440px - 0.02){
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu>ul.wp-megamenu-sub-menu{
+    padding: 24px !important;
+  }
+}
+@media (max-width: 992px - 0.02){
+  body .wp-megamenu-wrap .wpmm-nav-wrap > ul{
+    padding-left: 0 !important;
+  }
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu>ul.wp-megamenu-sub-menu{
+    width: calc(100% + 200px);
+    left: -20%;
+  }
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu>ul.wp-megamenu-sub-menu>li>.wp-megamenu-sub-menu{
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu>ul.wp-megamenu-sub-menu>li>.wp-megamenu-sub-menu>li{
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
 @media only screen and (max-width: 767px) {
   header.site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu {
     display: none;
+    padding-left: 6px !important;
+    top: 97px;
   }
   .header-main .header-socials,.header-main .site-header .header-search{
     display: none;
   }
   .header-main {
-      padding: 25px 0;
+      padding: 16px 0;
   }
   .header-main .wpmm-mobile-menu a.wpmm_mobile_menu_btn{
-    padding: 0
+    padding: 0;
+    outline: none;
+    border: none;
   }
   .header-main .wpmm-mobile-menu a.wpmm_mobile_menu_btn i{
     font-size: 31px !important;
@@ -310,12 +336,15 @@
   .header-main .site-header #wp-megamenu-primary{
     padding-left: 0;
     padding-right: 0;
+    position: unset;
   }
   .header-main .wpmm_mobile_menu_btn:hover,.header-main .wpmm_mobile_menu_btn:focus  {
     background-color: transparent;
   }
   .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.menu-item>a{
     color: #333;
+    position: relative;
+    // width: max-content;
   }
   .footer-top .wrap {
     display: inline-block !important;
@@ -323,5 +352,65 @@
   .footer-top .wrap .footer-top--left,.footer-top .wrap .footer-top--right {
     width: 100%;
     max-width: 100%;
+  }
+  .wp-megamenu-wrap.wpmm-mobile-menu .wpmm-nav-wrap{
+    position: unset;
+  }
+  .header-main .site-header{
+    padding: 0;
+  }
+  .wp-custom-logo .title-area img{
+    height: 60px;
+  }
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.menu-item>a .fa-angle-down{
+    position: absolute;
+    right: 36px;
+    transition: .3s ease all;
+  }
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.menu-item>a .fa-angle-down.rotate{
+    transform: rotate(180deg);
+  }
+  .wp-megamenu-wrap .wpmm-nav-wrap > ul.wp-megamenu > li.wpmm_dropdown_menu ul.wp-megamenu-sub-menu li{
+    padding: 0;
+  }
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_dropdown_menu>ul.wp-megamenu-sub-menu{
+    padding: 0;
+    margin: 0;
+  }
+  #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li ul.wp-megamenu-sub-menu li a{
+    text-decoration: none;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu>ul.wp-megamenu-sub-menu{
+    left: 0;
+    box-shadow: none;
+  }
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu>ul.wp-megamenu-sub-menu>li>.wp-megamenu-sub-menu>li{
+    padding: 0 ;
+    margin-bottom: 16px;
+  }
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu>ul.wp-megamenu-sub-menu>li>.wp-megamenu-sub-menu>li:last-child{
+    margin-bottom: 0;
+  }
+  .wp-megamenu-wrap .wpmm-nav-wrap > ul.wp-megamenu > li.wpmm_dropdown_menu:last-child ul.wp-megamenu-sub-menu{
+    right: unset;
+  }
+  .header-main .site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu>li.wpmm_mega_menu>ul.wp-megamenu-sub-menu>li>.wp-megamenu-sub-menu{
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 480px - 0.02){
+  .wp-custom-logo .title-area img{
+    height: 48px;
+  }
+  #wp-megamenu-primary.wpmm-mobile-menu a.wpmm_mobile_menu_btn{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  header.site-header #wp-megamenu-primary>.wpmm-nav-wrap ul.wp-megamenu{
+    top: 80px;
   }
 }

@@ -81,7 +81,14 @@
         }
     }
 
+    function toggleMenuMobile() {
+    $('.site-header .wp-megamenu .menu-item a').click( function() {
+      $(this).find('b').toggleClass('rotate');
+    });
+  }
+
     $( document ).ready(function() {
+      toggleMenuMobile();
         showPopupSharePage();
         hiddenPopupSharePage();
         copyLinkPageCurrent();
