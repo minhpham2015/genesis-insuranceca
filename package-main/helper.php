@@ -342,22 +342,23 @@ function get_order_column( $column, $post_id ) {
 
     if ( $xlsx = SimpleXLSX::parse($file['tmp_name']) ) {
 
-  $month_arr = array(
-    'Jan' => '01',
-    'Feb' => '02',
-    'Mar' => '03',
-    'Apr' => '04',
-    'May' => '05',
-    'Jun' => '06',
-    'Jul' => '07',
-    'Aug' => '08',
-    'Sept' => '09',
-    'Sep' => '09',
-    'Oct' => '10',
-    'Nov' => '11',
-    'Dec' => '12'
-  );
+    $month_arr = array(
+      'Jan' => '01',
+      'Feb' => '02',
+      'Mar' => '03',
+      'Apr' => '04',
+      'May' => '05',
+      'Jun' => '06',
+      'Jul' => '07',
+      'Aug' => '08',
+      'Sept' => '09',
+      'Sep' => '09',
+      'Oct' => '10',
+      'Nov' => '11',
+      'Dec' => '12'
+    );
 
+      $yearimport = get_field('year_resources_import','options');
       foreach( $xlsx->rows() as $k => $r) {
 
             //get year
@@ -366,7 +367,7 @@ function get_order_column( $column, $post_id ) {
                continue;
               }
 
-              if($year == 2011){
+              if($yearimport == 2011){
 
                 //Check data empty
                 if(trim($r[1]) == '') continue;
@@ -470,6 +471,7 @@ function get_order_column( $column, $post_id ) {
                 set_post_thumbnail( $res_id, $featured_id );
 
                 }
+                break;
               }
             }
 
