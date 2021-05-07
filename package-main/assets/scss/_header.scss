@@ -89,7 +89,7 @@
           }
         }
         &.current-menu-item,&.current-menu-ancestor{
-          a{
+          >a{
             &:before{
               content: "";
               position: absolute;
