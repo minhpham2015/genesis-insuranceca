@@ -1,3 +1,11 @@
+.elementor-section{
+    &.bt-ss-find-an-insurer{
+        @media only screen and (max-width: 1199px){
+            background-size: contain !important;
+        }
+    }
+}
+
 .elementor-widget{
     &.elementor-widget-breadcrumbs{
         font-size: 14px;
