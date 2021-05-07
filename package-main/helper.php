@@ -367,7 +367,7 @@ function get_order_column( $column, $post_id ) {
                continue;
               }
 
-              if($yearimport == 2011){
+              if($yearimport == $year){
 
                 //Check data empty
                 if(trim($r[1]) == '') continue;
