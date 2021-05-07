@@ -6,6 +6,22 @@
     }
 }
 
+.elementor-section{
+    &.bt-ss-find-an-insurer{
+        @media only screen and (max-width: 1199px){
+            background-size: contain !important;
+        }
+        @media only screen and (max-width: 1023px){
+            background-position: 425px 50% !important;
+        }
+    }
+}
+.elementor-grid-mobile-1 .elementor-grid{
+    @media only screen and (max-width: 767px) and (min-width: 541px){
+        grid-template-columns: repeat(2,1fr) !important;
+    }
+}
+
 .elementor-widget{
     &.elementor-widget-breadcrumbs{
         font-size: 14px;
