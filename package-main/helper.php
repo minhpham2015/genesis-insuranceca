@@ -471,7 +471,6 @@ function get_order_column( $column, $post_id ) {
                 set_post_thumbnail( $res_id, $featured_id );
 
                 }
-                break;
               }
             }
 
