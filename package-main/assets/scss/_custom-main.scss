@@ -1,3 +1,8 @@
+body{
+    #wpadminbar{
+        overflow: hidden;
+    }
+}
 .elementor-section{
     &.bt-ss-find-an-insurer{
         @media only screen and (max-width: 1199px){
