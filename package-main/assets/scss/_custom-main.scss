@@ -1,8 +1,36 @@
+body{
+    #wpadminbar{
+        overflow: hidden;
+    }
+}
+.elementor-column{
+    &.bt-col-2-mobi{
+        @media only screen and (max-width: 767px) and (min-width: 641px){
+            width: 50%;
+        }
+    }
+}
 .elementor-section{
     &.bt-ss-find-an-insurer{
         @media only screen and (max-width: 1199px){
             background-size: contain !important;
         }
+    }
+}
+
+.elementor-section{
+    &.bt-ss-find-an-insurer{
+        @media only screen and (max-width: 1199px){
+            background-size: contain !important;
+        }
+        @media only screen and (max-width: 1023px){
+            background-position: 425px 50% !important;
+        }
+    }
+}
+.elementor-grid-mobile-1 .elementor-grid{
+    @media only screen and (max-width: 767px) and (min-width: 541px){
+        grid-template-columns: repeat(2,1fr) !important;
     }
 }
 
