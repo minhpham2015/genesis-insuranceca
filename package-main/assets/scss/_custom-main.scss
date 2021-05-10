@@ -3,6 +3,16 @@ body{
         overflow: hidden;
     }
 }
+
+.page-template{
+    .elementor-container{
+        @media only screen and (max-width: 1023px){
+            padding-left: 19px;
+            padding-right: 19px;
+        }
+    }
+}
+
 .elementor-column{
     &.bt-col-2-mobi{
         @media only screen and (max-width: 767px) and (min-width: 641px){
