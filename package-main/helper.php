@@ -359,6 +359,7 @@ function get_order_column( $column, $post_id ) {
     );
 
       $yearimport = $_GET['year'];
+      $count = 1;
       foreach( $xlsx->rows() as $k => $r) {
 
             //get year
@@ -377,19 +378,27 @@ function get_order_column( $column, $post_id ) {
                 $pdf_name = $r[1]; //PDF name
                 $date = $r[2]; //PDF date
                 $title = $r[3]; //Title
-
-                $dir_path_file = $resources_dir.$year.'/'.$year.'_'.$month;
+                if($type == 'ICA reports'){
+                  $dir_path_file = $resources_dir.$year;
+                }else {
+                  $dir_path_file = $resources_dir.$year.'/'.$year.'_'.$month;
+                }
                 $name_file = '';
                 $path_file = '';
                 $content = '';
 
                 //Find file in folder
                 $files = scandir($dir_path_file);
+                //print_r($files);echo '<br>';
                 foreach ($files as $f) {
-                  if (($pdf_name == $f || $pdf_name.'.pdf' == $f) && $f != '.' && $f != '..') {
+                  if (($pdf_name == $f || $pdf_name.'.pdf' == $f || strtolower($pdf_name) == strtolower($f)) && $f != '.' && $f != '..') {
                      $name_file = $f;
                   }
                 }
+
+                // echo ($count).'.'.$pdf_name.' *** '.$name_file;
+                //echo '<br>';
+                $count++;
 
                 // Get path file
                 if($name_file){
