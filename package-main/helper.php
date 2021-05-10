@@ -408,9 +408,11 @@ function get_order_column( $column, $post_id ) {
                 //Get content file PDF
                 if($path_file){
 
-                  $parser = new Parser();
-                  $pdf = $parser->parseFile($path_file);
-                  $content = $pdf->getText();
+                  if($pdf_name != '201505_Best Practice Workers Compensation Scheme'){
+                    $parser = new Parser();
+                    $pdf = $parser->parseFile($path_file);
+                    $content = $pdf->getText();
+                  }
 
                   //add file to Media
                   require_once(ABSPATH . 'wp-admin/includes/image.php');
