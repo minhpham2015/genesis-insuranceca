@@ -66,21 +66,6 @@
 
     }
 
-    function urlScrollFAQ() {
-
-        var url = "?active-part";
-        var isFAQ = $('.site-inner .template-ins-faqs-list');
-
-        if(window.location.href.indexOf(url) > -1) {
-            var offsetFAQ = jQuery('.site-inner .ica-content-filter').offset();
-
-            $('html, body').animate({
-                scrollTop: offsetFAQ.top
-            }, 500);
-            return false;
-        }
-    }
-
     function toggleMenuMobile() {
     $('.site-header .wp-megamenu .menu-item a').click( function() {
       $(this).find('b').toggleClass('rotate');
@@ -94,11 +79,11 @@
         copyLinkPageCurrent();
         hiddenAlertBannerTop();
         btnScroll();
-        urlScrollFAQ();
+
     });
 
     $(window).on('load',function(){
-        urlScrollFAQ();
+
     });
 
 
