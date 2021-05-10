@@ -358,133 +358,136 @@ function get_order_column( $column, $post_id ) {
       'Dec' => '12'
     );
 
-      $yearimport = $_GET['year'];
-      $count = 1;
-      foreach( $xlsx->rows() as $k => $r) {
+          $yearimport = $_GET['year'];
+          $count = 1;
+          foreach( $xlsx->rows() as $k => $r) {
 
             //get year
-            if($r[1] == 'Numbered File Name Prefix'){
-               $year = $r[0];
-               continue;
-            }
+              if($r[1] == 'Numbered File Name Prefix'){
+                 $year = $r[0];
+                 continue;
+              }
 
-              if($year == $yearimport){
+                //if($year == $yearimport){
 
-                //Check data empty
-                //Get month
-                $month = (trim($r[0]) != '') ? $month_arr[$r[0]] : $month;
+                  //Check data empty
+                  //Get month
+                  $month = (trim($r[0]) != '') ? $month_arr[$r[0]] : $month;
 
-                if(trim($r[1]) == '') continue;
-                $pdf_name = $r[1]; //PDF name
-                $date = $r[2]; //PDF date
-                $title = $r[3]; //Title
-                if($type == 'ICA reports'){
-                  $dir_path_file = $resources_dir.$year;
-                }else {
-                  $dir_path_file = $resources_dir.$year.'/'.$year.'_'.$month;
-                }
-                $name_file = '';
-                $path_file = '';
-                $content = '';
-
-                //Find file in folder
-                $files = scandir($dir_path_file);
-                //print_r($files);echo '<br>';
-                foreach ($files as $f) {
-                  if (($pdf_name == $f || $pdf_name.'.pdf' == $f || strtolower($pdf_name) == strtolower($f)) && $f != '.' && $f != '..') {
-                     $name_file = $f;
+                  if(trim($r[1]) == '') continue;
+                  $pdf_name = $r[1]; //PDF name
+                  $date = $r[2]; //PDF date
+                  $title = $r[3]; //Title
+                  if($type == 'ICA reports'){
+                    $dir_path_file = $resources_dir.$year;
+                  }else {
+                    $dir_path_file = $resources_dir.$year.'/'.$year.'_'.$month;
                   }
-                }
+                  $name_file = '';
+                  $path_file = '';
+                  $content = '';
 
-                // echo ($count).'.'.$pdf_name.' *** '.$name_file;
-                //echo '<br>';
-                $count++;
-
-                // Get path file
-                if($name_file){
-                 $path_file = $dir_path_file.'/'.$name_file;
-                }
-
-                //Get content file PDF
-                if($path_file){
-
-                  if($pdf_name != '201505_Best Practice Workers Compensation Scheme'){
-                    $parser = new Parser();
-                    $pdf = $parser->parseFile($path_file);
-                    $content = $pdf->getText();
-                  }
-
-                  //add file to Media
-                  require_once(ABSPATH . 'wp-admin/includes/image.php');
-                  require_once(ABSPATH . 'wp-admin/includes/post.php');
-
-                  $upload_folder = $upload_dir['path'];
-
-                  // Set filename, incl path
-                  $filename = 'resources/'.$type.'/'.$year.'/'.$year.'_'.$month.'/'.$name_file;
-
-                  // Check the type of file. We'll use this as the 'post_mime_type'.
-                  $filetype = wp_check_filetype( basename( $filename ), null );
-
-                  // Get file title
-                  $title_file = preg_replace( '/\.[^.]+$/', '', basename( $name_file ) );
-
-                  // Prepare an array of post data for the attachment.
-                  $attachment_data = array(
-                    'guid'           => $upload_dir['url'] . '/' . basename( $filename ),
-                    'post_mime_type' => $filetype['type'],
-                    'post_title'     => $title_file,
-                    'post_content'   => '',
-                    'post_status'    => 'inherit'
-                  );
-
-                  // Does the attachment already exist ?
-                  if( post_exists( $title_file ) ){
-                    $attachment = get_page_by_title( $title_file, OBJECT, 'attachment');
-                    if( !empty( $attachment ) ){
-                      $attachment_data['ID'] = $attachment->ID;
+                  //Find file in folder
+                  $files = scandir($dir_path_file);
+                  //print_r($files);echo '<br>';
+                  foreach ($files as $f) {
+                    if (($pdf_name == $f || $pdf_name.'.pdf' == $f || strtolower($pdf_name) == strtolower($f)) && $f != '.' && $f != '..') {
+                       $name_file = $f;
                     }
                   }
 
-                  // If no parent id is set, reset to default(0)
-                  if( empty( $parent_id ) ){
-                    $parent_id = 0;
+                  //echo ($count).'.'.$pdf_name.' *** '.$name_file;
+                  //echo '<br>';
+                  $count++;
+
+                  // Get path file
+                  if($name_file){
+                   $path_file = $dir_path_file.'/'.$name_file;
                   }
 
-                  // Insert the attachment.
-                  $attach_id = wp_insert_attachment( $attachment_data, $filename, $parent_id );
+                  //Get content file PDF
+                  if($path_file){
 
-                  // Generate the metadata for the attachment, and update the database record.
-                  $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
-                  wp_update_attachment_metadata( $attach_id, $attach_data );
+                    if($pdf_name != '201505_Best Practice Workers Compensation Scheme'
+                        && $pdf_name != '202007_ICA_insuringForPandemics'
+                        && $pdf_name != '2017_02_Effective Disclosure Research Report'
+                      ){
+                      $parser = new Parser();
+                      $pdf = $parser->parseFile($path_file);
+                      $content = $pdf->getText();
+                    }
 
-                  if(!($check_resources = post_exists($title))){
-                    $timestamp = strtotime(str_replace('/', '-', $date));
-                    // Create post object
-                    $resources = array(
-                      'post_title'    => $title,
-                      'post_status'   => 'publish',
-                      'post_author'   => 1,
-                      'post_date'     => date('Y-m-d',$timestamp),
-                      'post_type'	  => 'resources'
+                    //add file to Media
+                    require_once(ABSPATH . 'wp-admin/includes/image.php');
+                    require_once(ABSPATH . 'wp-admin/includes/post.php');
+
+                    $upload_folder = $upload_dir['path'];
+
+                    // Set filename, incl path
+                    $filename = 'resources/'.$type.'/'.$year.'/'.$year.'_'.$month.'/'.$name_file;
+
+                    // Check the type of file. We'll use this as the 'post_mime_type'.
+                    $filetype = wp_check_filetype( basename( $filename ), null );
+
+                    // Get file title
+                    $title_file = preg_replace( '/\.[^.]+$/', '', basename( $name_file ) );
+
+                    // Prepare an array of post data for the attachment.
+                    $attachment_data = array(
+                      'guid'           => $upload_dir['url'] . '/' . basename( $filename ),
+                      'post_mime_type' => $filetype['type'],
+                      'post_title'     => $title_file,
+                      'post_content'   => '',
+                      'post_status'    => 'inherit'
                     );
-                    // Insert the post into the database
-                    $res_id = wp_insert_post( $resources );
-                  }else{
-                    $res_id = $check_resources;
+
+                    // Does the attachment already exist ?
+                    if( post_exists( $title_file ) ){
+                      $attachment = get_page_by_title( $title_file, OBJECT, 'attachment');
+                      if( !empty( $attachment ) ){
+                        $attachment_data['ID'] = $attachment->ID;
+                      }
+                    }
+
+                    // If no parent id is set, reset to default(0)
+                    if( empty( $parent_id ) ){
+                      $parent_id = 0;
+                    }
+
+                    // Insert the attachment.
+                    $attach_id = wp_insert_attachment( $attachment_data, $filename, $parent_id );
+
+                    // Generate the metadata for the attachment, and update the database record.
+                    $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
+                    wp_update_attachment_metadata( $attach_id, $attach_data );
+
+                    if(!($check_resources = post_exists($title))){
+                      $timestamp = strtotime(str_replace('/', '-', $date));
+                      // Create post object
+                      $resources = array(
+                        'post_title'    => $title,
+                        'post_status'   => 'publish',
+                        'post_author'   => 1,
+                        'post_date'     => date('Y-m-d',$timestamp),
+                        'post_type'	  => 'resources'
+                      );
+                      // Insert the post into the database
+                      $res_id = wp_insert_post( $resources );
+                    }else{
+                      $res_id = $check_resources;
+                    }
+
+                    $featured_id = get_field('featured_image_import','options');
+
+                    //Update data
+                    update_field('upload_file',$attach_id,$res_id);
+                    update_field('content_file',$content,$res_id);
+                    wp_set_object_terms( $res_id, strtolower($type) , 'ins-type' );
+                    set_post_thumbnail( $res_id, $featured_id );
+
                   }
-
-                  $featured_id = get_field('featured_image_import','options');
-
-                  //Update data
-                  update_field('upload_file',$attach_id,$res_id);
-                  update_field('content_file',$content,$res_id);
-                  wp_set_object_terms( $res_id, strtolower($type) , 'ins-type' );
-                  set_post_thumbnail( $res_id, $featured_id );
-
-                }
-              }
-            }
+                //}
+          }
 
           } else {
             $error_import = SimpleXLSX::parseError();
