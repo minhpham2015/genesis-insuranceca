@@ -3,6 +3,10 @@
   border: none;
   .wrap{
     max-width: 805px;
+    @media (max-width: 768px - 0.02){
+      padding-left: 29px;
+      padding-right: 29px;
+    }
     p{
       padding: 18px 0 56px;
       border-top: 1px solid #e5e3dc;
@@ -86,6 +90,10 @@
   .wrap{
     display: flex;
     align-items: flex-start;
+    @media (max-width: 768px - 0.02){
+      padding-left: 29px;
+      padding-right: 29px;
+    }
   }
   &--left{
     max-width: 220px;
@@ -169,6 +177,10 @@
 .footer-widgets{
   .wrap{
     display: flex;
+    @media (max-width: 768px - 0.02){
+      padding-left: 29px;
+      padding-right: 29px;
+    }
   }
 }
 
