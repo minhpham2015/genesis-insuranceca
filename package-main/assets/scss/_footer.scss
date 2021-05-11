@@ -130,6 +130,9 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      @media (max-width: 768px - 0.02){
+        display: block;
+      }
       .__des{
         max-width: 257px;
         font-size: 13px;
@@ -141,6 +144,9 @@
         color: #2f2f39;
       }
       .__btn{
+        @media (max-width: 768px - 0.02){
+          display: inline-block;
+        }
         a{
           font-size: 17px;
           font-weight: bold;
