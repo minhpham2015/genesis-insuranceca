@@ -20,20 +20,13 @@ body{
         }
     }
 }
-.elementor-section{
-    &.bt-ss-find-an-insurer{
-        @media only screen and (max-width: 1199px){
-            background-size: contain !important;
-        }
-    }
-}
 
 .elementor-section{
     &.bt-ss-find-an-insurer{
-        @media only screen and (max-width: 1199px){
+        @media only screen and (max-width: 1199px) and (min-width: 768px){
             background-size: contain !important;
         }
-        @media only screen and (max-width: 1023px){
+        @media only screen and (max-width: 1023px) and (min-width: 768px){
             background-position: 425px 50% !important;
         }
     }
