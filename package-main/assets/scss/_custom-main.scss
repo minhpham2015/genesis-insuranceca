@@ -11,6 +11,14 @@ body{
             padding-right: 19px;
         }
     }
+    .bt-section-mobi-full{
+        .elementor-container{
+            @media only screen and (max-width: 767px){
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
 }
 
 .elementor-column{
@@ -40,7 +48,7 @@ body{
 .elementor-widget{
     &.elementor-widget-breadcrumbs{
         font-size: 14px;
-        line-height: 40px;
+        line-height: 25px;
         letter-spacing: -0.25px;
         font-weight: 700;
         color: #4a4a4a;
@@ -48,7 +56,14 @@ body{
         @media only screen and (max-width: 374px){
             font-size: 13px;
         }
+        #breadcrumbs{
+            line-height: initial;
+        }
         .elementor-widget-container{
+            a, span{
+                display: initial;
+                line-height: inherit !important;
+            }
             a{
                 color: #9b9b9b;
                 position: relative;
