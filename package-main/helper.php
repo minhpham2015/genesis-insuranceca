@@ -358,7 +358,7 @@ function get_order_column( $column, $post_id ) {
       'Dec' => '12'
     );
 
-          $yearimport = $_GET['year'];
+          $yearimport = isset($_GET['year']) ? $_GET['year'] : '';
           $count = 1;
           foreach( $xlsx->rows() as $k => $r) {
 
@@ -367,6 +367,8 @@ function get_order_column( $column, $post_id ) {
                  $year = $r[0];
                  continue;
               }
+
+              if($yearimport && $yearimport != $year) continue;
 
                 //if($year == $yearimport){
 
