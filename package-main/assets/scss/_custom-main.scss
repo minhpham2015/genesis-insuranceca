@@ -46,6 +46,15 @@ body{
 }
 
 .elementor-widget{
+    &.elementor-widget-text-editor{
+        ul, ol{
+            list-style-type: decimal;
+            padding: 0 0 10px 20px;
+            li{
+                position: relative;
+            }
+        }
+    }
     &.elementor-widget-breadcrumbs{
         font-size: 14px;
         line-height: 25px;
