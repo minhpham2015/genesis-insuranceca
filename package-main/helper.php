@@ -314,6 +314,26 @@ function get_order_column( $column, $post_id ) {
 
 
 {
+
+  //Update data resources
+  add_action('init','update_data_resource');
+  function update_data_resource(){
+    if(isset($_GET['update-resources'])){
+      $args = array(
+  			'post_type' => 'resources',
+  			'post_status' => 'publish',
+  			'posts_per_page' => -1,
+  		);
+      $res = get_posts($args);
+      foreach ($res as $key => $post) {
+        $select_type_resources = get_field('select_type_resources',$post->ID);
+        if(!$select_type_resources){
+          update_field('select_type_resources','PDF',$post->ID);
+        }
+      }
+    }
+  }
+
   /* Import PDF to Resources*/
   add_action('template_include','load_template_import');
   function load_template_import($template){
@@ -328,6 +348,7 @@ function get_order_column( $column, $post_id ) {
     return $template;
   }
 
+  //Import data
   add_action('init','run_import_resources');
   function run_import_resources(){
   global $error_import;
