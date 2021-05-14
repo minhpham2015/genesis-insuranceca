@@ -46,6 +46,15 @@ body{
 }
 
 .elementor-widget{
+    &.elementor-widget-text-editor{
+        ul, ol{
+            list-style-type: decimal;
+            padding: 0 0 10px 20px;
+            li{
+                position: relative;
+            }
+        }
+    }
     &.elementor-widget-breadcrumbs{
         font-size: 14px;
         line-height: 25px;
@@ -55,9 +64,6 @@ body{
         font-family: $main-font;
         @media only screen and (max-width: 374px){
             font-size: 13px;
-        }
-        #breadcrumbs{
-            line-height: initial;
         }
         .elementor-widget-container{
             a, span{
