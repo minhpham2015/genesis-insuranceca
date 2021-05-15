@@ -115,7 +115,7 @@ function insuranceca_search_default_template(){
   ?>
   <div id="ins_form_search" class="ins-search-form-default mfp-hide">
       <div class="top-search">
-        <img src="<?php echo PJ_URI; ?>assets/images/logo-green.png" alt="">
+        <img src="<?php echo PJ_URI; ?>assets/images/logo-green.svg" alt="logo">
       </div>
       <div class="template-search">
         <?php echo do_shortcode(get_field('search_nav','options')); ?>
