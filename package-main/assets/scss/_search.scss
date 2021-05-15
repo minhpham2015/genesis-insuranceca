@@ -50,6 +50,10 @@
     left: 38px;
     max-width: 100px;
     cursor: pointer;
+    img{
+        max-width: 80px;
+        height: auto;
+    }
   }
   .template-filter-form{
     .__filter-suggestion{
