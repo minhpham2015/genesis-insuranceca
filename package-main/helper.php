@@ -406,6 +406,7 @@ function get_order_column( $column, $post_id ) {
                   }else {
                     $dir_path_file = $resources_dir.$year.'/'.$year.'_'.$month;
                   }
+
                   $name_file = '';
                   $path_file = '';
                   $content = '';
@@ -447,7 +448,11 @@ function get_order_column( $column, $post_id ) {
                     $upload_folder = $upload_dir['path'];
 
                     // Set filename, incl path
-                    $filename = 'resources/'.$type.'/'.$year.'/'.$year.'_'.$month.'/'.$name_file;
+                    if($type == 'ICA reports'){
+                      $filename = 'resources/'.$type.'/'.$year.'/'.$name_file;
+                    }else {
+                      $filename = 'resources/'.$type.'/'.$year.'/'.$year.'_'.$month.'/'.$name_file;
+                    }
 
                     // Check the type of file. We'll use this as the 'post_mime_type'.
                     $filetype = wp_check_filetype( basename( $filename ), null );
