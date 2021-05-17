@@ -335,7 +335,7 @@ function get_order_column( $column, $post_id ) {
   }
 
   /* Import PDF to Resources*/
-  add_action('template_include','load_template_import');
+  add_action('template_include','load_template_import', 999 );
   function load_template_import($template){
     if(isset($_GET['action']) && $_GET['action'] == 'import'){
       $type = $_GET['type'];
@@ -360,7 +360,6 @@ function get_order_column( $column, $post_id ) {
     $upload_dir = wp_upload_dir();
     $file = $_FILES['file-import'];
     $resources_dir = $upload_dir['basedir'].'/resources/'.$type.'/';
-
     if ( $xlsx = SimpleXLSX::parse($file['tmp_name']) ) {
 
     $month_arr = array(
@@ -380,6 +379,7 @@ function get_order_column( $column, $post_id ) {
     );
 
           $yearimport = isset($_GET['year']) ? $_GET['year'] : '';
+
           $count = 1;
           foreach( $xlsx->rows() as $k => $r) {
 
@@ -420,8 +420,8 @@ function get_order_column( $column, $post_id ) {
                     }
                   }
 
-                  //echo ($count).'.'.$pdf_name.' *** '.$name_file;
-                  //echo '<br>';
+                  echo ($count).'.'.$pdf_name.' *** '.$name_file;
+                  echo '<br>';
                   $count++;
 
                   // Get path file
