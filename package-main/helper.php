@@ -420,9 +420,11 @@ function get_order_column( $column, $post_id ) {
                     }
                   }
 
-                  echo ($count).'.'.$pdf_name.' *** '.$name_file;
-                  echo '<br>';
-                  $count++;
+                  if(!$name_file){
+                    echo ($count).'.'.$pdf_name.' *** '.$name_file;
+                    echo '<br>';
+                    $count++;
+                  }
 
                   // Get path file
                   if($name_file){
