@@ -379,8 +379,9 @@ function get_order_column( $column, $post_id ) {
     );
 
           $yearimport = isset($_GET['year']) ? $_GET['year'] : '';
-
+          $file_tmp = array();
           $count = 1;
+          $list_import = [];
           foreach( $xlsx->rows() as $k => $r) {
 
             //get year
@@ -417,13 +418,16 @@ function get_order_column( $column, $post_id ) {
                   foreach ($files as $f) {
                     if (($pdf_name == $f || $pdf_name.'.pdf' == $f || strtolower($pdf_name) == strtolower($f)) && $f != '.' && $f != '..') {
                        $name_file = $f;
+                       $list_import[] = $f;
                     }
-                  }
 
-                  if(!$name_file){
-                    echo ($count).'.'.$pdf_name.' *** '.$name_file;
-                    echo '<br>';
-                    $count++;
+                    if($f && $f != '.' && $f != '..' && !in_array($f,$file_tmp)){
+                      //echo ($count).'.'.$f;
+                      //echo '<br>';
+                      $file_tmp[] = $f;
+                      //$count++;
+                    }
+
                   }
 
                   // Get path file
@@ -491,7 +495,7 @@ function get_order_column( $column, $post_id ) {
                     $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
                     wp_update_attachment_metadata( $attach_id, $attach_data );
 
-                    if(!($check_resources = post_exists($title))){
+                    if(!($check_resources = post_exists($title ,'','','resources'))){
                       $timestamp = strtotime(str_replace('/', '-', $date));
                       // Create post object
                       $resources = array(
@@ -507,6 +511,11 @@ function get_order_column( $column, $post_id ) {
                       $res_id = $check_resources;
                     }
 
+
+                    echo $count.'. '.$title. ' - '. get_post_type($res_id);
+                    echo '<br>';
+                    $count++;
+
                     $featured_id = get_field('featured_image_import','options');
 
                     //Update data
@@ -517,6 +526,15 @@ function get_order_column( $column, $post_id ) {
 
                   }
                 //}
+          }
+
+          $list_diff = array_diff($file_tmp,$list_import);
+
+          $f = 1;
+          foreach ($list_diff as $key => $fk) {
+            echo $f.'. '.$fk;
+            echo '<br>';
+            $f++;
           }
 
           } else {
