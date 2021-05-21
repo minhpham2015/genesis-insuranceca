@@ -504,7 +504,7 @@ function get_order_column( $column, $post_id ) {
                         'post_author'   => 1,
                         'post_date'     => date('Y-m-d',$timestamp),
                         'post_type'	  => 'resources'
-                      );
+                      ); 
                       // Insert the post into the database
                       $res_id = wp_insert_post( $resources );
                     }else{
