@@ -230,20 +230,20 @@ function acf_save_resources($post_id){
   $file_id      = (isset($acf[$key])) ? $acf[$key] : $acf[$key1];
   $type_sources = (isset($acf[$field3['key']])) ? $acf[$field3['key']] : $acf[$key3];
   $key_content  = (isset($field2['key'])) ? $field2['key'] : $key2;
-  if(isset($type_sources) && $type_sources == 'HTML'){
-    $link_html = (isset($acf[$field4['key']])) ? $acf[$field4['key']] : $acf[$key4];
-    if($link_html != $old_val3){
-      if($link_html){
-        $_POST['acf'][$key_content] = file_get_contents($link_html);
-      }else{
-        $_POST['acf'][$key_content] = '';
-      }
-    }else{
-      if(($link_html && trim($old_val2) == '') || ($link_html && $old_val4 != $type_sources)){
-        $_POST['acf'][$key_content] = file_get_contents($link_html);
-      }
-    }
-  }else{
+  // if(isset($type_sources) && $type_sources == 'HTML'){
+  //   $link_html = (isset($acf[$field4['key']])) ? $acf[$field4['key']] : $acf[$key4];
+  //   if($link_html != $old_val3){
+  //     if($link_html){
+  //       $_POST['acf'][$key_content] = file_get_contents($link_html);
+  //     }else{
+  //       $_POST['acf'][$key_content] = '';
+  //     }
+  //   }else{
+  //     if(($link_html && trim($old_val2) == '') || ($link_html && $old_val4 != $type_sources)){
+  //       $_POST['acf'][$key_content] = file_get_contents($link_html);
+  //     }
+  //   }
+  // }else{
     if($file_id != $old_val['ID']){
       if($file_id){
         $file = get_attached_file($file_id);
@@ -259,7 +259,7 @@ function acf_save_resources($post_id){
         $_POST['acf'][$key_content] = $content;
       }
     }
-  }
+  //}
 }
 
 //Parser
