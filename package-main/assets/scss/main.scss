@@ -41,7 +41,7 @@ body{
 		font-family: $main-font;
 	}
 	.site-inner ul li{
-		  list-style-type: initial;
+		  list-style-type: initial !important;
 	}
 }
 
