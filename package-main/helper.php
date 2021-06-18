@@ -49,7 +49,7 @@ function share_page_button(){
     $ctaShare = get_field('cta_popus_share_page', 'option');
     $headingPopup = get_field('heading_popus_share_page', 'option');
     $headingLinkCurrent= get_field('heading_page_link_current', 'option');
-    if ($active) { ?>
+    if ($active || is_singular('resources')) { ?>
         <div id="insuranceca-share-page" class="bt-share-page">
             <div class="cta-share">
                 <?php if ($ctaShare['name'] or $ctaShare['icon']): ?>
@@ -390,6 +390,20 @@ function get_order_column( $column, $post_id ) {
                  continue;
               }
 
+              $date = $r[2];
+              $timestamp = strtotime(str_replace('/', '-', $date));
+
+              if($date != 'Date'){
+                $year_res = date('Y',$timestamp);
+                if($year_res != $year){
+                  $year = $year_res;
+                }
+              }
+
+              if($year != "2018"){
+                break;
+              }
+
               if($yearimport && $yearimport != $year) continue;
 
                 //if($year == $yearimport){
@@ -400,7 +414,6 @@ function get_order_column( $column, $post_id ) {
 
                   if(trim($r[1]) == '') continue;
                   $pdf_name = $r[1]; //PDF name
-                  $date = $r[2]; //PDF date
                   $title = $r[3]; //Title
                   if($type == 'ICA reports'){
                     $dir_path_file = $resources_dir.$year;
@@ -422,8 +435,8 @@ function get_order_column( $column, $post_id ) {
                     }
 
                     if($f && $f != '.' && $f != '..' && !in_array($f,$file_tmp)){
-                      //echo ($count).'.'.$f;
-                      //echo '<br>';
+                      echo ($count).'.'.$f;
+                      echo '<br>';
                       $file_tmp[] = $f;
                       //$count++;
                     }
@@ -495,8 +508,7 @@ function get_order_column( $column, $post_id ) {
                     $attach_data = wp_generate_attachment_metadata( $attach_id, $filename );
                     wp_update_attachment_metadata( $attach_id, $attach_data );
 
-                    if(!($check_resources = post_exists($title ,'','','resources'))){
-                      $timestamp = strtotime(str_replace('/', '-', $date));
+                    if(!trim($check_resources = post_exists($title ,'','','resources','publish'))){
                       // Create post object
                       $resources = array(
                         'post_title'    => $title,
@@ -504,7 +516,7 @@ function get_order_column( $column, $post_id ) {
                         'post_author'   => 1,
                         'post_date'     => date('Y-m-d',$timestamp),
                         'post_type'	  => 'resources'
-                      ); 
+                      );
                       // Insert the post into the database
                       $res_id = wp_insert_post( $resources );
                     }else{
@@ -512,7 +524,7 @@ function get_order_column( $column, $post_id ) {
                     }
 
 
-                    echo $count.'. '.$title. ' - '. get_post_type($res_id);
+                    echo $count.'. '.$res_id.' - '.$title. ' - '. get_post_type($res_id);
                     echo '<br>';
                     $count++;
 
