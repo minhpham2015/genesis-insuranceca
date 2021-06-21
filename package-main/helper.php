@@ -435,8 +435,8 @@ function get_order_column( $column, $post_id ) {
                     }
 
                     if($f && $f != '.' && $f != '..' && !in_array($f,$file_tmp)){
-                      echo ($count).'.'.$f;
-                      echo '<br>';
+                       // echo ($count).'.'.$f;
+                       // echo '<br>';
                       $file_tmp[] = $f;
                       //$count++;
                     }
@@ -543,6 +543,7 @@ function get_order_column( $column, $post_id ) {
           $list_diff = array_diff($file_tmp,$list_import);
 
           $f = 1;
+          echo 'DIFF:<br>';
           foreach ($list_diff as $key => $fk) {
             echo $f.'. '.$fk;
             echo '<br>';
