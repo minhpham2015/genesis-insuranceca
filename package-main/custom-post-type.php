@@ -44,8 +44,8 @@ function insuranceca_custom_post_type() {
 	//FAQs
 	register_post_type( 'ins-faqs',
 		array('labels' => array(
-				'name' => __('FAQs', 'genesis-insuranceca'), /* This is the Title of the Group */
-				'singular_name' => __('FAQs', 'genesis-insuranceca'), /* This is the individual type */
+				'name' => __('New CoP Accordion', 'genesis-insuranceca'), /* This is the Title of the Group */
+				'singular_name' => __('New CoP Accordion', 'genesis-insuranceca'), /* This is the individual type */
 				'all_items' => __('All', 'genesis-insuranceca'), /* the all items menu item */
 				'add_new' => __('Add New', 'genesis-insuranceca'), /* The add new menu item */
 				'add_new_item' => __('Add New', 'genesis-insuranceca'), /* Add New Display Title */
@@ -116,7 +116,7 @@ function insuranceca_custom_taxonomy(){
 	//Types
 	register_taxonomy(
         'ins-type',  // The name of the taxonomy. Name should be in slug form (must not contain capital letters or spaces).
-        array('resources','ins-faqs'), // post type name
+        array('resources'), // post type name
         array(
             'hierarchical' => true,
             'label' => 'Types', // display name
@@ -131,7 +131,7 @@ function insuranceca_custom_taxonomy(){
 		//Topics
 		register_taxonomy(
 	        'ins-topic',  // The name of the taxonomy. Name should be in slug form (must not contain capital letters or spaces).
-	        array('ins-faqs','resources'), // post type name
+	        array('resources'), // post type name
 	        array(
 	            'hierarchical' => false,
 	            'label' => 'Topic', // display name

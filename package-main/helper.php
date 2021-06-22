@@ -323,15 +323,32 @@ function get_order_column( $column, $post_id ) {
   			'post_type' => 'resources',
   			'post_status' => 'publish',
   			'posts_per_page' => -1,
+        'wp_title' => 'Q:'
   		);
-      $res = get_posts($args);
-      foreach ($res as $key => $post) {
-        $select_type_resources = get_field('select_type_resources',$post->ID);
-        if(!$select_type_resources){
-          update_field('select_type_resources','PDF',$post->ID);
-        }
+      add_filter( 'posts_where', 'like_title_posts_where', 10, 2 );
+      $the_query = new WP_Query($args);
+      remove_filter( 'posts_where', 'like_title_posts_where', 10, 2 );
+      // The Loop
+      if ( $the_query->have_posts() ) {
+          while ( $the_query->have_posts() ) {
+              $the_query->the_post();
+              wp_set_post_terms( get_the_ID(), array(50), 'ins-type');
+          }
+      } else {
+          // no posts found
       }
+      /* Restore original Post Data */
+      wp_reset_postdata();
     }
+  }
+  //add_filter( 'posts_where', 'like_title_posts_where', 10, 2 );
+  function like_title_posts_where( $where, &$wp_query )
+  {
+      global $wpdb;
+      if ( $wp_title = $wp_query->get( 'wp_title' ) ) {
+          $where .= ' AND ' . $wpdb->posts . '.post_title LIKE \'' . esc_sql( $wpdb->esc_like( $wp_title ) ) . '%\'';
+      }
+      return $where;
   }
 
   /* Import PDF to Resources*/
@@ -398,10 +415,6 @@ function get_order_column( $column, $post_id ) {
                 if($year_res != $year){
                   $year = $year_res;
                 }
-              }
-
-              if($year != "2018"){
-                break;
               }
 
               if($yearimport && $yearimport != $year) continue;
